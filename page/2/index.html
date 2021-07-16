@@ -1061,222 +1061,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue2-reactivity/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yaroku">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yaroku's Blog Page">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/07/16/fontend/awesome-vue/vue2-reactivity/" itemprop="url">Vue2 Reactivity</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-16T22:26:40+08:00">
-                2021-07-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">web前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E5%89%8D%E7%AB%AF/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Reactivity"><a href="#Reactivity" class="headerlink" title="Reactivity"></a>Reactivity</h1><h2 id="what’s-reactivity"><a href="#what’s-reactivity" class="headerlink" title="what’s reactivity?"></a>what’s reactivity?</h2><p>let us show an example on relationship with variables.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> b = a * <span class="number">10</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 30</span></span><br><span class="line">a = <span class="number">4</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 30</span></span><br><span class="line"><span class="comment">// if we want b to change when a changed</span></span><br><span class="line">b = a * <span class="number">10</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 40</span></span><br></pre></td></tr></table></figure>
-
-<p>so if we have a function to exec when a changed. let us say.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onAChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  b = a * <span class="number">10</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>now, when we move to DOM.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cell b1"</span>&gt;</span>&#123;&#123; b &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">// when a change</span></span></span><br><span class="line"><span class="javascript">onStateChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.querySelector(<span class="string">'cell.b'</span>).textContent = state.a * <span class="number">10</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="comment">// in other expression</span></span></span><br><span class="line"><span class="javascript">onStateChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line">  view = render(state)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>in react.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onStateChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  view = render(state)</span><br><span class="line">&#125;)</span><br><span class="line">setState(&#123; <span class="attr">a</span>: <span class="number">5</span> &#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty"></a>Object.defineProperty</h2><p>vue use <code>Object.defineProperty</code> to catch variable get and set.</p>
-<blockquote>
-<p><code>Object.defineProperty</code> basic usage</p>
-</blockquote>
-<p><code>Object.defineProperty(obj, prop, descriptor)</code></p>
-<p><code>obj</code> object to defined prop.</p>
-<p><code>prop</code> object prop to defined</p>
-<p><code>descriptor</code> descriptor for defination</p>
-<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">'key'</span>, &#123;</span><br><span class="line">  <span class="comment">// enumerable: true if and only if the type of this property descriptor may be changed and </span></span><br><span class="line">  <span class="comment">// if the property may be deleted from the corresponding object</span></span><br><span class="line">  enumerable: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// configurable: true if and only if this property shows up during enumeration of the properties</span></span><br><span class="line">  <span class="comment">// on the corresponding object.</span></span><br><span class="line">  configurable: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// writable: true if and only if the value associated with the property may be changed</span></span><br><span class="line">  <span class="comment">// with an assignment operator.</span></span><br><span class="line">  writable: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// A function which serves as a getter for the property, or undefined if there is no getter.</span></span><br><span class="line">  <span class="keyword">get</span> () &#123;</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// A function which serves as a setter for the property, or undefined if there is no setter.</span></span><br><span class="line">  <span class="keyword">set</span> (newVal) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>we can take an exercise for <code>Object.defineProperty</code></p>
-<h3 id="EXERCISE"><a href="#EXERCISE" class="headerlink" title="EXERCISE"></a>EXERCISE</h3><p>Implement a convert function that</p>
-<ul>
-<li><p>take an Object as the argument</p>
-</li>
-<li><p>convert the Object’s property to place into getter/setters using Object.defineProperty.</p>
-</li>
-<li><p>The converted object should retain origin behavior, but at the sanme time log all the get/set operations.</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convert</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> internalVal = obj[key]</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">      <span class="keyword">get</span> () &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`getting key "<span class="subst">$&#123;key&#125;</span>": "<span class="subst">$&#123;internalVal&#125;</span>"`</span>)</span><br><span class="line">        <span class="keyword">return</span> internalVal</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="keyword">set</span> (newValue) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`set key "<span class="subst">$&#123;key&#125;</span>": "<span class="subst">$&#123;newValue&#125;</span>"`</span>)</span><br><span class="line">        internalVal = newValue </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>if we want build a data reactivity system, as for a variable, we should know which other variable rely on this variable.Just like above</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> b = a * <span class="number">10</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p><code>b</code> is rely on <code>a</code>.But where can we find these dependency, yep, we can catch it by <code>Object.defineProperty get</code> if <code>b</code> want to get <code>a</code>, now <code>b</code> is <code>a</code> dependency, we can catch <code>b</code> from <code>a</code> get function.</p>
-</li>
-<li><p>if we have collect <code>a</code> dependency, next thing is that we should nofity <code>a</code> all dependency to update when <code>a</code> changed(just like tell <code>b</code> that <code>a</code> is different, so you should update), where can we do thiese thing, yep we can do this in <code>a</code> set function.</p>
-<p>these are two main rules in build reactivity system, you should undestand it.</p>
-<p>But what really we do in vue2, please keep watching.</p>
-</li>
-</ul>
-<h2 id="collect-dependency"><a href="#collect-dependency" class="headerlink" title="collect dependency"></a>collect dependency</h2><h3 id="EXERCISE-Dependency"><a href="#EXERCISE-Dependency" class="headerlink" title="EXERCISE Dependency"></a>EXERCISE Dependency</h3><ul>
-<li><p>create Dep class with two methods: depend and notify</p>
-</li>
-<li><p>create an autorun function that takes an updater function.</p>
-</li>
-<li><p>Inside the update function, you can explicitly depend on an instance of Dep by calling dep.depend()</p>
-</li>
-<li><p>later, you can triggle the update function to run aigain by calling dep.notify()</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.Dep = <span class="class"><span class="keyword">class</span> <span class="title">Dep</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> () &#123;</span><br><span class="line">    <span class="keyword">this</span>.subcribers = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  depend () &#123;</span><br><span class="line">    <span class="keyword">if</span> (activeUpdate) &#123;</span><br><span class="line">      <span class="keyword">this</span>.subscribers.add(activeUpdate)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  notify () &#123;</span><br><span class="line">    <span class="keyword">this</span>.subscribers.forEach(<span class="function"><span class="params">sub</span> =&gt;</span> sub())</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> activeUpdate</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autorun</span> (<span class="params">update</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">wrappedUpdate</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    activeUpdate = wrappedUpdate</span><br><span class="line">    update()</span><br><span class="line">    activeUpdate = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  wrappedUpdate()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="set-watcher"><a href="#set-watcher" class="headerlink" title="set watcher"></a>set watcher</h2><h3 id="EXERCISE-Observer"><a href="#EXERCISE-Observer" class="headerlink" title="EXERCISE Observer"></a>EXERCISE Observer</h3><p>Combine the previous two functions, renaming convert() to observe() and keeping autorun():</p>
-<ul>
-<li><p>observe(): converts the properties in the received object and make them reactive.For each converted peroperty, it gets assigned a Dep instance which keeps tracks of a list of subscribing update function, and triggers them to re-run when its setter is invoked.</p>
-</li>
-<li><p>autorun(): takes an update function and re-runs it when properties that the update function subcribes to have been mutated. An update function is said to be “subscribe” to a property if it relies on that property during its evalution.</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observe</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autorun</span> (<span class="params">update</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue2-render/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1445,6 +1229,222 @@
 <p>Solution</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">smart-avatar</span> <span class="attr">username</span>=<span class="string">"vuejs"</span>&gt;</span><span class="tag">&lt;/<span class="name">smart-avatar</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">fetchURL</span> <span class="params">(username, cb)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    setTiemout(<span class="function"><span class="params">()</span> =&gt;</span>&#123;</span></span><br><span class="line"><span class="actionscript">      cb(<span class="string">'http://test.url'</span>)</span></span><br><span class="line">    &#125;, 500)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> Avatar = &#123;</span></span><br><span class="line"><span class="actionscript">    props: [<span class="string">'src'</span>],</span></span><br><span class="line"><span class="handlebars"><span class="xml">    template: '<span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"src"</span>&gt;</span>'</span></span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">withAvatarURL</span> <span class="params">(InnerComponent)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      props: [<span class="string">'username'</span>],</span></span><br><span class="line">      created () &#123;</span><br><span class="line"><span class="actionscript">        fetchURL(<span class="keyword">this</span>.username, url =&gt; &#123;</span></span><br><span class="line"><span class="actionscript">          <span class="keyword">this</span>.url = url</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      data () &#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> &#123; url: <span class="string">'http://test.com/test.png'</span> &#125;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      render (h) &#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> h (Avatar, &#123;</span></span><br><span class="line">          props: &#123;</span><br><span class="line"><span class="actionscript">            src: <span class="keyword">this</span>.url</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> SmartAvatar = withAvatarURL(Avatar)</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">    el: <span class="string">'#app'</span>,</span></span><br><span class="line">    component: &#123; SmartAvatar &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue2-reactivity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yaroku">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yaroku's Blog Page">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/07/16/fontend/awesome-vue/vue2-reactivity/" itemprop="url">Vue2 Reactivity</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-16T22:26:40+08:00">
+                2021-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%89%8D%E7%AB%AF/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Reactivity"><a href="#Reactivity" class="headerlink" title="Reactivity"></a>Reactivity</h1><h2 id="what’s-reactivity"><a href="#what’s-reactivity" class="headerlink" title="what’s reactivity?"></a>what’s reactivity?</h2><p>let us show an example on relationship with variables.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> b = a * <span class="number">10</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 30</span></span><br><span class="line">a = <span class="number">4</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 30</span></span><br><span class="line"><span class="comment">// if we want b to change when a changed</span></span><br><span class="line">b = a * <span class="number">10</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 40</span></span><br></pre></td></tr></table></figure>
+
+<p>so if we have a function to exec when a changed. let us say.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onAChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  b = a * <span class="number">10</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>now, when we move to DOM.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cell b1"</span>&gt;</span>&#123;&#123; b &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">// when a change</span></span></span><br><span class="line"><span class="javascript">onStateChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.querySelector(<span class="string">'cell.b'</span>).textContent = state.a * <span class="number">10</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="comment">// in other expression</span></span></span><br><span class="line"><span class="javascript">onStateChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line">  view = render(state)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>in react.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onStateChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  view = render(state)</span><br><span class="line">&#125;)</span><br><span class="line">setState(&#123; <span class="attr">a</span>: <span class="number">5</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty"></a>Object.defineProperty</h2><p>vue use <code>Object.defineProperty</code> to catch variable get and set.</p>
+<blockquote>
+<p><code>Object.defineProperty</code> basic usage</p>
+</blockquote>
+<p><code>Object.defineProperty(obj, prop, descriptor)</code></p>
+<p><code>obj</code> object to defined prop.</p>
+<p><code>prop</code> object prop to defined</p>
+<p><code>descriptor</code> descriptor for defination</p>
+<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">'key'</span>, &#123;</span><br><span class="line">  <span class="comment">// enumerable: true if and only if the type of this property descriptor may be changed and </span></span><br><span class="line">  <span class="comment">// if the property may be deleted from the corresponding object</span></span><br><span class="line">  enumerable: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// configurable: true if and only if this property shows up during enumeration of the properties</span></span><br><span class="line">  <span class="comment">// on the corresponding object.</span></span><br><span class="line">  configurable: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// writable: true if and only if the value associated with the property may be changed</span></span><br><span class="line">  <span class="comment">// with an assignment operator.</span></span><br><span class="line">  writable: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// A function which serves as a getter for the property, or undefined if there is no getter.</span></span><br><span class="line">  <span class="keyword">get</span> () &#123;</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// A function which serves as a setter for the property, or undefined if there is no setter.</span></span><br><span class="line">  <span class="keyword">set</span> (newVal) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>we can take an exercise for <code>Object.defineProperty</code></p>
+<h3 id="EXERCISE"><a href="#EXERCISE" class="headerlink" title="EXERCISE"></a>EXERCISE</h3><p>Implement a convert function that</p>
+<ul>
+<li><p>take an Object as the argument</p>
+</li>
+<li><p>convert the Object’s property to place into getter/setters using Object.defineProperty.</p>
+</li>
+<li><p>The converted object should retain origin behavior, but at the sanme time log all the get/set operations.</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convert</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> internalVal = obj[key]</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">      <span class="keyword">get</span> () &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`getting key "<span class="subst">$&#123;key&#125;</span>": "<span class="subst">$&#123;internalVal&#125;</span>"`</span>)</span><br><span class="line">        <span class="keyword">return</span> internalVal</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="keyword">set</span> (newValue) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`set key "<span class="subst">$&#123;key&#125;</span>": "<span class="subst">$&#123;newValue&#125;</span>"`</span>)</span><br><span class="line">        internalVal = newValue </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>if we want build a data reactivity system, as for a variable, we should know which other variable rely on this variable.Just like above</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> b = a * <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>b</code> is rely on <code>a</code>.But where can we find these dependency, yep, we can catch it by <code>Object.defineProperty get</code> if <code>b</code> want to get <code>a</code>, now <code>b</code> is <code>a</code> dependency, we can catch <code>b</code> from <code>a</code> get function.</p>
+</li>
+<li><p>if we have collect <code>a</code> dependency, next thing is that we should nofity <code>a</code> all dependency to update when <code>a</code> changed(just like tell <code>b</code> that <code>a</code> is different, so you should update), where can we do thiese thing, yep we can do this in <code>a</code> set function.</p>
+<p>these are two main rules in build reactivity system, you should undestand it.</p>
+<p>But what really we do in vue2, please keep watching.</p>
+</li>
+</ul>
+<h2 id="collect-dependency"><a href="#collect-dependency" class="headerlink" title="collect dependency"></a>collect dependency</h2><h3 id="EXERCISE-Dependency"><a href="#EXERCISE-Dependency" class="headerlink" title="EXERCISE Dependency"></a>EXERCISE Dependency</h3><ul>
+<li><p>create Dep class with two methods: depend and notify</p>
+</li>
+<li><p>create an autorun function that takes an updater function.</p>
+</li>
+<li><p>Inside the update function, you can explicitly depend on an instance of Dep by calling dep.depend()</p>
+</li>
+<li><p>later, you can triggle the update function to run aigain by calling dep.notify()</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.Dep = <span class="class"><span class="keyword">class</span> <span class="title">Dep</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> () &#123;</span><br><span class="line">    <span class="keyword">this</span>.subcribers = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  depend () &#123;</span><br><span class="line">    <span class="keyword">if</span> (activeUpdate) &#123;</span><br><span class="line">      <span class="keyword">this</span>.subscribers.add(activeUpdate)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  notify () &#123;</span><br><span class="line">    <span class="keyword">this</span>.subscribers.forEach(<span class="function"><span class="params">sub</span> =&gt;</span> sub())</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> activeUpdate</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autorun</span> (<span class="params">update</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">wrappedUpdate</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    activeUpdate = wrappedUpdate</span><br><span class="line">    update()</span><br><span class="line">    activeUpdate = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  wrappedUpdate()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="set-watcher"><a href="#set-watcher" class="headerlink" title="set watcher"></a>set watcher</h2><h3 id="EXERCISE-Observer"><a href="#EXERCISE-Observer" class="headerlink" title="EXERCISE Observer"></a>EXERCISE Observer</h3><p>Combine the previous two functions, renaming convert() to observe() and keeping autorun():</p>
+<ul>
+<li><p>observe(): converts the properties in the received object and make them reactive.For each converted peroperty, it gets assigned a Dep instance which keeps tracks of a list of subscribing update function, and triggers them to re-run when its setter is invoked.</p>
+</li>
+<li><p>autorun(): takes an update function and re-runs it when properties that the update function subcribes to have been mutated. An update function is said to be “subscribe” to a property if it relies on that property during its evalution.</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observe</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autorun</span> (<span class="params">update</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
