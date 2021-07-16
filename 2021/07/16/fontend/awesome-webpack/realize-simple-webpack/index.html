@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Yaroku's Blog Page" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="实现一个简单的webpackwebpack流程图  具体流程   利用babel完成代码转换，并生成单个文件的依赖: @bable&#x2F;parse 可以生成 AST; @babel&#x2F;traverse 进行AST遍历，记录依赖关系；最后用@babel&#x2F;core和@babel&#x2F;preset-env进行代码的转换  生成依赖图谱  生成最后打包代码   代码实现 第一步  12345678910111213">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fontend&#x2F;awesome-webpack&#x2F;realize-simple-webpack">
+<meta property="og:url" content="https://ysatiche.github.io/2021/07/16/fontend/awesome-webpack/realize-simple-webpack/index.html">
+<meta property="og:site_name" content="Yaroku&#39;s Blog Page">
+<meta property="og:description" content="实现一个简单的webpackwebpack流程图  具体流程   利用babel完成代码转换，并生成单个文件的依赖: @bable&#x2F;parse 可以生成 AST; @babel&#x2F;traverse 进行AST遍历，记录依赖关系；最后用@babel&#x2F;core和@babel&#x2F;preset-env进行代码的转换  生成依赖图谱  生成最后打包代码   代码实现 第一步  12345678910111213">
+<meta property="og:image" content="https://ysatiche.github.io/2021/07/16/fontend/awesome-webpack/realize-simple-webpack/img/webpack.png">
+<meta property="article:published_time" content="2021-07-16T14:26:40.666Z">
+<meta property="article:modified_time" content="2021-07-16T14:26:40.667Z">
+<meta property="article:author" content="Yaroku">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ysatiche.github.io/2021/07/16/fontend/awesome-webpack/realize-simple-webpack/img/webpack.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ysatiche.github.io/2021/07/16/fontend/awesome-webpack/realize-simple-webpack/"/>
+
+
+
+
+
+  <title>fontend/awesome-webpack/realize-simple-webpack | Yaroku's Blog Page</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yaroku's Blog Page</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Blog for Code & Life!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ysatiche.github.io/2021/07/16/fontend/awesome-webpack/realize-simple-webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yaroku">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yaroku's Blog Page">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">fontend/awesome-webpack/realize-simple-webpack</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-16T22:26:40+08:00">
+                2021-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="实现一个简单的webpack"><a href="#实现一个简单的webpack" class="headerlink" title="实现一个简单的webpack"></a>实现一个简单的webpack</h1><h2 id="webpack流程图"><a href="#webpack流程图" class="headerlink" title="webpack流程图"></a>webpack流程图</h2><p><img src="./img/webpack.png" alt="webpack流程图"></p>
+<blockquote>
+<p>具体流程</p>
+</blockquote>
+<ol>
+<li><p>利用babel完成代码转换，并生成单个文件的依赖: @bable/parse 可以生成 AST; @babel/traverse 进行AST遍历，记录依赖关系；最后用@babel/core和@babel/preset-env进行代码的转换</p>
+</li>
+<li><p>生成依赖图谱</p>
+</li>
+<li><p>生成最后打包代码</p>
+</li>
+</ol>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><blockquote>
+<p>第一步</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// npm install @babel/parse @babel/traverse @babel/core @babel/preset-env</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"><span class="keyword">const</span> traverse = <span class="built_in">require</span>(<span class="string">'@babel/traverse'</span>).default</span><br><span class="line"><span class="keyword">const</span> parser = <span class="built_in">require</span>(<span class="string">'@babel/parser'</span>)</span><br><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">'@babel/core'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stepOne</span> (<span class="params">filename</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// read file</span></span><br><span class="line">  <span class="keyword">const</span> ast = readFile(filename)</span><br><span class="line">  <span class="comment">// 遍历ast抽象语法</span></span><br><span class="line">  <span class="keyword">const</span> dependencies = traverseAST(ast)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 通过@babel/core 和 @babel/preset-env 进行代码的转换</span></span><br><span class="line">  <span class="keyword">const</span> &#123; code &#125; = babel.transformFromAst(ast, <span class="literal">null</span>, &#123;</span><br><span class="line">    presets: [<span class="string">'@babel/preet-env'</span>]</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 返回文件名称 依赖关系</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    filename,</span><br><span class="line">    dependencies,</span><br><span class="line">    code</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readFile</span> (<span class="params">filename</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> content = fs.readFileSync(filename, <span class="string">'utf-8'</span>)</span><br><span class="line">  <span class="keyword">const</span> ast = parser.parse(content, &#123;</span><br><span class="line">    sourceType: <span class="string">'module'</span> <span class="comment">// babel官方规定必须加这个参数 不然无法识别ES MODULE</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> ast</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">traverseAST</span> (<span class="params">ast</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> dependencies = &#123;&#125;</span><br><span class="line">  traverse(ast, &#123;</span><br><span class="line">    <span class="comment">// 获取通过import引入的模块</span></span><br><span class="line">    ImportDeclaration(&#123;code&#125;) &#123;</span><br><span class="line">      <span class="keyword">const</span> dirname = path.dirname(filename)</span><br><span class="line">      <span class="keyword">const</span> newFile = <span class="string">'./'</span> + path.join(dirname, node.source.value)</span><br><span class="line">      <span class="comment">// 保存所依赖的模块</span></span><br><span class="line">      dependencies[node.source.value] = newFile</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> dependencies</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>第二步 生成相应的依赖图</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stepTwo</span> (<span class="params">entry</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 先拿到带有依赖的AST对象</span></span><br><span class="line">  <span class="keyword">const</span> entryModule = stepOne(entry)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用深度优先算法获取图谱</span></span><br><span class="line">  <span class="keyword">const</span> graphArray = getGraphArray(entryModule)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 生成2图谱</span></span><br><span class="line">  <span class="keyword">const</span> graph = getGraph(graphArray) </span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> graph</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getGraphArray</span>(<span class="params">entryModule</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> graphArray = [entryModule]</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; graphArray.length; i++)&#123;</span><br><span class="line">        <span class="keyword">const</span> item = graphArray[i];</span><br><span class="line">        <span class="keyword">const</span> &#123;dependencies&#125; = item;<span class="comment">//拿到文件所依赖的模块集合(键值对存储)</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j <span class="keyword">in</span> dependencies)&#123;</span><br><span class="line">            graphArray.push(</span><br><span class="line">                one(dependencies[j])</span><br><span class="line">            )<span class="comment">//敲黑板！关键代码，目的是将入口模块及其所有相关的模块放入数组</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getGraph</span>(<span class="params">graphArray</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> graph = &#123;&#125;</span><br><span class="line">  graphArray.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">      graph[item.filename] = &#123;</span><br><span class="line">          dependencies: item.dependencies,</span><br><span class="line">          code: item.code</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> graph</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>看到这里就应该大概知道代码是如何处理这种AST树的了，就和算法中处理二叉树是一样，找到规律，不断的循环</p>
+<blockquote>
+<p>第三步：生成代码字符串</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stepThree</span>(<span class="params">entry</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// //要先把对象转换为字符串，不然在下面的模板字符串中会默认调取对象的toString方法，参数变成[Object object],显然不行</span></span><br><span class="line">    <span class="keyword">const</span> graph = <span class="built_in">JSON</span>.stringify(stepTwo(entry))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="string">`</span></span><br><span class="line"><span class="string">        (function(graph) &#123;</span></span><br><span class="line"><span class="string">            //require函数的本质是执行一个模块的代码，然后将相应变量挂载到exports对象上</span></span><br><span class="line"><span class="string">            function require(module) &#123;</span></span><br><span class="line"><span class="string">                //localRequire的本质是拿到依赖包的exports变量</span></span><br><span class="line"><span class="string">                function localRequire(relativePath) &#123;</span></span><br><span class="line"><span class="string">                    return require(graph[module].dependencies[relativePath]);</span></span><br><span class="line"><span class="string">                &#125;</span></span><br><span class="line"><span class="string">                var exports = &#123;&#125;;</span></span><br><span class="line"><span class="string">                (function(require, exports, code) &#123;</span></span><br><span class="line"><span class="string">                    eval(code);</span></span><br><span class="line"><span class="string">                &#125;)(localRequire, exports, graph[module].code);</span></span><br><span class="line"><span class="string">                return exports;//函数返回指向局部变量，形成闭包，exports变量在函数执行后不会被摧毁</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">            require('<span class="subst">$&#123;entry&#125;</span>')</span></span><br><span class="line"><span class="string">        &#125;)(<span class="subst">$&#123;graph&#125;</span>)`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以测试下：console.log(stepThree('./src/index.js'))</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/16/fontend/awesome-webpack/readme/" rel="next" title="webpack">
+                <i class="fa fa-chevron-left"></i> webpack
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/07/16/fontend/awesome-webpack/question-list/" rel="prev" title="webpack">
+                webpack <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Yaroku" />
+            
+              <p class="site-author-name" itemprop="name">Yaroku</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实现一个简单的webpack"><span class="nav-number">1.</span> <span class="nav-text">实现一个简单的webpack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack流程图"><span class="nav-number">1.1.</span> <span class="nav-text">webpack流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">1.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yaroku</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

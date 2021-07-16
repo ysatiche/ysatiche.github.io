@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="vue," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Yaroku's Blog Page" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Reactivitylet us show an example on relationship with variables. 12345678let a &#x3D; 3let b &#x3D; a * 10console.log(b) &#x2F;&#x2F; 30a &#x3D; 4console.log(b) &#x2F;&#x2F; 30&#x2F;&#x2F; if we want b to change when a changedb &#x3D; a * 10console.l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue Basic Intro">
+<meta property="og:url" content="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue-basic/index.html">
+<meta property="og:site_name" content="Yaroku&#39;s Blog Page">
+<meta property="og:description" content="Reactivitylet us show an example on relationship with variables. 12345678let a &#x3D; 3let b &#x3D; a * 10console.log(b) &#x2F;&#x2F; 30a &#x3D; 4console.log(b) &#x2F;&#x2F; 30&#x2F;&#x2F; if we want b to change when a changedb &#x3D; a * 10console.l">
+<meta property="article:published_time" content="2021-07-16T14:26:40.662Z">
+<meta property="article:modified_time" content="2021-07-16T14:26:40.663Z">
+<meta property="article:author" content="Yaroku">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue-basic/"/>
+
+
+
+
+
+  <title>Vue Basic Intro | Yaroku's Blog Page</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yaroku's Blog Page</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Blog for Code & Life!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue-basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yaroku">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yaroku's Blog Page">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue Basic Intro</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-16T22:26:40+08:00">
+                2021-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web%E5%89%8D%E7%AB%AF/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Reactivity"><a href="#Reactivity" class="headerlink" title="Reactivity"></a>Reactivity</h1><p>let us show an example on relationship with variables.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> b = a * <span class="number">10</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 30</span></span><br><span class="line">a = <span class="number">4</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 30</span></span><br><span class="line"><span class="comment">// if we want b to change when a changed</span></span><br><span class="line">b = a * <span class="number">10</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 40</span></span><br></pre></td></tr></table></figure>
+
+<p>so if we have a function to exec when a changed. let us say.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onAChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  b = a * <span class="number">10</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>now, when we move to DOM.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"cell b1"</span>&gt;</span>&#123;&#123; b &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">// when a change</span></span></span><br><span class="line"><span class="javascript">onStateChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.querySelector(<span class="string">'cell.b'</span>).textContent = state.a * <span class="number">10</span></span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="comment">// in other expression</span></span></span><br><span class="line"><span class="javascript">onStateChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line">  view = render(state)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>in react.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onStateChanged(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  view = render(state)</span><br><span class="line">&#125;)</span><br><span class="line">setState(&#123; <span class="attr">a</span>: <span class="number">5</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="EXERCISE"><a href="#EXERCISE" class="headerlink" title="EXERCISE"></a>EXERCISE</h3><p>Implement a convert function that</p>
+<ul>
+<li><p>take an Object as the argument</p>
+</li>
+<li><p>convert the Object’s property to place into getter/setters using Object.defineProperty.</p>
+</li>
+<li><p>The converted object should retain origin behavior, but at the sanme time log all the get/set operations.</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convert</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> internalVal = obj[key]</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">      <span class="keyword">get</span> () &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`getting key "<span class="subst">$&#123;key&#125;</span>": "<span class="subst">$&#123;internalVal&#125;</span>"`</span>)</span><br><span class="line">        <span class="keyword">return</span> internalVal</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="keyword">set</span> (newValue) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`set key "<span class="subst">$&#123;key&#125;</span>": "<span class="subst">$&#123;newValue&#125;</span>"`</span>)</span><br><span class="line">        internalVal = newValue </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="EXERCISE-Dependency"><a href="#EXERCISE-Dependency" class="headerlink" title="EXERCISE Dependency"></a>EXERCISE Dependency</h3><ul>
+<li><p>create Dep class with two methods: depend and notify</p>
+</li>
+<li><p>create an autorun function that takes an updater function.</p>
+</li>
+<li><p>Inside the update function, you can explicitly depend on an instance of Dep by calling dep.depend()</p>
+</li>
+<li><p>later, you can triggle the update function to run aigain by calling dep.notify()</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.Dep = <span class="class"><span class="keyword">class</span> <span class="title">Dep</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> () &#123;</span><br><span class="line">    <span class="keyword">this</span>.subcribers = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  depend () &#123;</span><br><span class="line">    <span class="keyword">if</span> (activeUpdate) &#123;</span><br><span class="line">      <span class="keyword">this</span>.subscribers.add(activeUpdate)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  notify () &#123;</span><br><span class="line">    <span class="keyword">this</span>.subscribers.forEach(<span class="function"><span class="params">sub</span> =&gt;</span> sub())</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> activeUpdate</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autorun</span> (<span class="params">update</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">wrappedUpdate</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    activeUpdate = wrappedUpdate</span><br><span class="line">    update()</span><br><span class="line">    activeUpdate = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  wrappedUpdate()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="EXERCISE-Observer"><a href="#EXERCISE-Observer" class="headerlink" title="EXERCISE Observer"></a>EXERCISE Observer</h3><p>Combine the previous two functions, renaming convert() to observe() and keeping autorun():</p>
+<ul>
+<li><p>observe(): converts the properties in the received object and make them reactive.For each converted peroperty, it gets assigned a Dep instance which keeps tracks of a list of subscribing update function, and triggers them to re-run when its setter is invoked.</p>
+</li>
+<li><p>autorun(): takes an update function and re-runs it when properties that the update function subcribes to have been mutated. An update function is said to be “subscribe” to a property if it relies on that property during its evalution.</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observe</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autorun</span> (<span class="params">update</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h1><p>two methods to write plugins</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">Vue, options</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// plugin code</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Vue.mixin(options)</span><br></pre></td></tr></table></figure>
+
+<h3 id="EXERCISE-simple-plugin"><a href="#EXERCISE-simple-plugin" class="headerlink" title="EXERCISE simple plugin"></a>EXERCISE simple plugin</h3><p>create a plugin that teaches Vue components to handle a custom “rules” option. The rules option expects an object that specifies validation rules for data in the component.</p>
+<p>Expected usage:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> RulesPlugin = &#123;</span><br><span class="line">  install (Vue) &#123;</span><br><span class="line">    Vue.mixin(&#123;</span><br><span class="line">      created () &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.$options.rules) &#123;</span><br><span class="line">          <span class="built_in">Object</span>.keys(<span class="keyword">this</span>.$options.rules).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> rule = <span class="keyword">this</span>.$options.rules[key]</span><br><span class="line">            <span class="keyword">this</span>.$watch(key, newValue =&gt; &#123;</span><br><span class="line">              <span class="keyword">const</span> result = rule.validate(newValue)</span><br><span class="line">              <span class="keyword">if</span> (!result) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(rule.message)</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Vue.use(RulesPlugin)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123; <span class="attr">foo</span>: <span class="number">10</span> &#125;,</span><br><span class="line">  rules: &#123;</span><br><span class="line">    foo: &#123;</span><br><span class="line">      validate: <span class="function"><span class="params">value</span> =&gt;</span> value &gt; <span class="number">1</span>,</span><br><span class="line">      message: <span class="string">'foo must be greater than one'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Render"><a href="#Render" class="headerlink" title="Render"></a>Render</h1><p>Template<br>-&gt; (compiled into) Render Function<br>-&gt; (returns) Virtual DOM<br>-&gt; (generates) Actual DOM</p>
+<blockquote>
+<p>Actual DOM</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">document.createElement(&#39;div&#39;)</span><br><span class="line"></span><br><span class="line">&quot;[Object HTMLDivElement]&quot; Browser Native Object (expensive)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Virtual DOM</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vm.$createElement(&#39;div&#39;)</span><br><span class="line">&#123; tag: &#39;div&#39;, data: &#123; attrs: &#123;&#125;&#125;, children: [] &#125; Plain Javascript Object (cheap)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Vue-Render-Function-API"><a href="#Vue-Render-Function-API" class="headerlink" title="Vue Render Function API"></a>Vue Render Function API</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  render (h) &#123;</span><br><span class="line">    <span class="keyword">return</span> h(<span class="string">'div'</span>, &#123;&#125;, [])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>examples</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">h(<span class="string">'div'</span>, <span class="string">'some text'</span>)</span><br><span class="line"></span><br><span class="line">h(<span class="string">'div'</span>, &#123; <span class="attr">class</span>: <span class="string">'foo'</span> &#125;, <span class="string">'some text'</span> )</span><br><span class="line"></span><br><span class="line">h(<span class="string">'div'</span> &#123; &#125;, [</span><br><span class="line">  <span class="string">'some text'</span>,</span><br><span class="line">  h(<span class="string">'span'</span>, <span class="string">'bar'</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>h can directly render a component</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> MyComponent <span class="keyword">from</span> <span class="string">'...'</span></span><br><span class="line"></span><br><span class="line">h(MyComponent, &#123;</span><br><span class="line">  props: &#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="EXERCISE-render-tags"><a href="#EXERCISE-render-tags" class="headerlink" title="EXERCISE render tags"></a>EXERCISE render tags</h3><p>Implement the ‘example’ component which given the following usage:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">example</span> <span class="attr">:tags</span>=<span class="string">"['h1', 'h2', 'h3']"</span>&gt;</span><span class="tag">&lt;/<span class="name">example</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>which renders the expected output:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>0<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>1<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>2<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Solution</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">example</span> <span class="attr">:tags</span>=<span class="string">"['h1', 'h2', 'h3']"</span>&gt;</span><span class="tag">&lt;/<span class="name">example</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">  Vue.component(<span class="string">'example'</span>, &#123;</span></span><br><span class="line"><span class="actionscript">    props: [<span class="string">'tags'</span>]</span></span><br><span class="line">    render (h) &#123;</span><br><span class="line"><span class="javascript">      <span class="keyword">return</span> h(<span class="string">'div'</span>, <span class="keyword">this</span>.tags.map(<span class="function">(<span class="params">tag, i</span>) =&gt;</span> h(tag, i)))</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">    el: <span class="string">'#app'</span></span></span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>if example is a functional component, code may write like this</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'example'</span>, &#123;</span><br><span class="line">  props: [<span class="string">'tags'</span>]</span><br><span class="line">  functional: <span class="literal">true</span>,</span><br><span class="line">  render (h, context) &#123;</span><br><span class="line">    <span class="keyword">return</span> h(<span class="string">'div'</span>, context.props.tags.map(<span class="function">(<span class="params">tag, i</span>) =&gt;</span> h(tag, i)))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="EXERCISE-render-Component"><a href="#EXERCISE-render-Component" class="headerlink" title="EXERCISE render Component"></a>EXERCISE render Component</h3><ul>
+<li><p>Implement a Foo component wihich simple render <code>&lt;div&gt;foo&lt;/div&gt;</code>, and a Bar component which simple renders <code>&lt;div&gt;bar&lt;/div&gt;</code> (using render function obviously)</p>
+</li>
+<li><p>Implement an <example> component which renders the Foo component or the Bar component based on its <code>ok</code> prop. For <example> if ok is true, the final renderd dom should be <code>&lt;div&gt;foo&lt;/div&gt;</code></p>
+</li>
+<li><p>Implement a button in the root component that toggles <code>&lt;example&gt;</code> between <code>Foo</code> and <code>Bar</code> by controlling its <code>ok</code> prop.</p>
+</li>
+</ul>
+<blockquote>
+<p>Solution</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">example</span> <span class="attr">:ok</span>=<span class="string">"ok"</span>&gt;</span><span class="tag">&lt;/<span class="name">example</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"ok = !ok"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> Foo = &#123;</span></span><br><span class="line"><span class="javascript">    render: <span class="function"><span class="params">h</span> =&gt;</span> h(<span class="string">'div'</span>, <span class="string">'foo'</span>)</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> Bar = &#123;</span></span><br><span class="line"><span class="javascript">    render: <span class="function"><span class="params">h</span> =&gt;</span> h(<span class="string">'div'</span>, <span class="string">'bar'</span>)</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript">  Vue.component(<span class="string">'example'</span>, &#123;</span></span><br><span class="line"><span class="actionscript">    props: [<span class="string">'ok'</span>]</span></span><br><span class="line">    render (h) &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> <span class="keyword">this</span>.ok ? h(Foo) : h(Bar)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">    el: <span class="string">'#app'</span>,</span></span><br><span class="line"><span class="actionscript">    data: &#123; ok: <span class="literal">true</span> &#125;</span></span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="EXERCISE-Higher-Order-Component"><a href="#EXERCISE-Higher-Order-Component" class="headerlink" title="EXERCISE Higher Order Component"></a>EXERCISE Higher Order Component</h3><ul>
+<li><p>Implement a withAvatarURL helper which takes an inner component that expects a <code>url</code> prop, and return a higher-order component that accepts a <code>username</code> prop instead. The higher-order component should be responsible for fetching the curresponding svatar url from a mocked API.</p>
+</li>
+<li><p>Before the API returns, the higher-order component should be passing a placeholder URL <a href="http://test.com/test.png" target="_blank" rel="noopener">http://test.com/test.png</a> to the inner component.</p>
+</li>
+</ul>
+<p>The exercise provides a base <code>Avatar</code> component. The usage should look like this.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> SmartAvatar = withAvatarURL(Avatar)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Solution</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">smart-avatar</span> <span class="attr">username</span>=<span class="string">"vuejs"</span>&gt;</span><span class="tag">&lt;/<span class="name">smart-avatar</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">fetchURL</span> <span class="params">(username, cb)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    setTiemout(<span class="function"><span class="params">()</span> =&gt;</span>&#123;</span></span><br><span class="line"><span class="actionscript">      cb(<span class="string">'http://test.url'</span>)</span></span><br><span class="line">    &#125;, 500)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> Avatar = &#123;</span></span><br><span class="line"><span class="actionscript">    props: [<span class="string">'src'</span>],</span></span><br><span class="line"><span class="handlebars"><span class="xml">    template: '<span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"src"</span>&gt;</span>'</span></span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">withAvatarURL</span> <span class="params">(InnerComponent)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      props: [<span class="string">'username'</span>],</span></span><br><span class="line">      created () &#123;</span><br><span class="line"><span class="actionscript">        fetchURL(<span class="keyword">this</span>.username, url =&gt; &#123;</span></span><br><span class="line"><span class="actionscript">          <span class="keyword">this</span>.url = url</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      data () &#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> &#123; url: <span class="string">'http://test.com/test.png'</span> &#125;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      render (h) &#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> h (Avatar, &#123;</span></span><br><span class="line">          props: &#123;</span><br><span class="line"><span class="actionscript">            src: <span class="keyword">this</span>.url</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> SmartAvatar = withAvatarURL(Avatar)</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">  <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">    el: <span class="string">'#app'</span>,</span></span><br><span class="line">    component: &#123; SmartAvatar &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="VUEX"><a href="#VUEX" class="headerlink" title="VUEX"></a>VUEX</h1><h3 id="shared-object"><a href="#shared-object" class="headerlink" title="shared object"></a>shared object</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">  count: <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Counter = &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> state</span><br><span class="line">  &#125;,</span><br><span class="line">  render (h) &#123;</span><br><span class="line">    <span class="keyword">return</span> h(<span class="string">'div'</span>, <span class="keyword">this</span>.count)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123; Counter &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>if <code>count</code> can be reactivity, using Vue</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"inc"</span>&gt;</span>inc<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> state = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line">  data: &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> () &#123;</span></span><br><span class="line">      count: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    inc () &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.count++</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> Counter = &#123;</span></span><br><span class="line">  render (h) &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> h(<span class="string">'div'</span>, state.count)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el: <span class="string">'#app'</span>,</span></span><br><span class="line">  components: &#123; Counter &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    inc () &#123;</span><br><span class="line">      state.inc()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>we can use more vuex like sytax</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"inc"</span>&gt;</span>inc<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">createStore</span> <span class="params">(&#123; state, mutations &#125;)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">return</span> <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line">    data: &#123; state &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      commit (mutationType) &#123;</span><br><span class="line"><span class="actionscript">        mutations[mutationType](<span class="keyword">this</span>.state)</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> store = createStore(&#123;</span></span><br><span class="line">  state: &#123; count: 0 &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    inc (state) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> Counter = &#123;</span></span><br><span class="line">  render (h) &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> h(<span class="string">'div'</span>, store.state.count)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el: <span class="string">'#app'</span>,</span></span><br><span class="line">  components: &#123; Counter &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    inc () &#123;</span><br><span class="line"><span class="actionscript">      store.commit(<span class="string">'inc'</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="vue-route"><a href="#vue-route" class="headerlink" title="vue route"></a>vue route</h1><h3 id="EXERCISE-1"><a href="#EXERCISE-1" class="headerlink" title="EXERCISE"></a>EXERCISE</h3><ul>
+<li><p>display foo component when url is #foo</p>
+</li>
+<li><p>display bar component when url is #bar</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"url"</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#foo"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, () =&gt; &#123;</span></span><br><span class="line"><span class="javascript">  app.url = <span class="built_in">window</span>.location.hash.slice(<span class="number">1</span>)</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el: <span class="string">'#app'</span>,</span></span><br><span class="line">  data: &#123;</span><br><span class="line"><span class="javascript">    url: <span class="built_in">window</span>.location.hash.slice(<span class="number">1</span>)</span></span><br><span class="line">  &#125;,</span><br><span class="line">  components: &#123;</span><br><span class="line"><span class="handlebars"><span class="xml">    foo: &#123; template: `<span class="tag">&lt;<span class="name">div</span>&gt;</span>foo<span class="tag">&lt;/<span class="name">div</span>&gt;</span>` &#125;,</span></span></span><br><span class="line"><span class="handlebars"><span class="xml">    bar: &#123; template: `<span class="tag">&lt;<span class="name">div</span>&gt;</span>bar<span class="tag">&lt;/<span class="name">div</span>&gt;</span>` &#125;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>using route table</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"url"</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#foo"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="built_in">window</span>.addEventListener(<span class="string">'hashchange'</span>, () =&gt; &#123;</span></span><br><span class="line"><span class="javascript">  app.url = <span class="built_in">window</span>.location.hash.slice(<span class="number">1</span>)</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">const</span> Bar = &#123; <span class="attr">template</span>: <span class="string">`&lt;div&gt;bar&lt;/div&gt;`</span>&#125;</span></span><br><span class="line"><span class="javascript"><span class="keyword">const</span> Foo = &#123; <span class="attr">template</span>: <span class="string">`&lt;div&gt;foo&lt;/div&gt;`</span>&#125;</span></span><br><span class="line"><span class="javascript"><span class="keyword">const</span> NotFound = &#123; <span class="attr">template</span>: <span class="string">`&lt;div&gt;not found&lt;/div&gt;`</span>&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> routeTable = &#123;</span></span><br><span class="line"><span class="actionscript">  <span class="string">'bar'</span>: Bar,</span></span><br><span class="line"><span class="actionscript">  <span class="string">'foo'</span>: Foo,</span></span><br><span class="line"><span class="actionscript">  <span class="string">'notfound'</span>: NotFound</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el: <span class="string">'#app'</span>,</span></span><br><span class="line">  data: &#123;</span><br><span class="line"><span class="javascript">    url: <span class="built_in">window</span>.location.hash.slice(<span class="number">1</span>)</span></span><br><span class="line">  &#125;,</span><br><span class="line">  render (h) &#123;</span><br><span class="line"><span class="actionscript">    h(routeTable[<span class="keyword">this</span>.url])</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/16/fontend/awesome-react/redux-and-hooks/" rel="next" title="fontend/awesome-react/redux-and-hooks">
+                <i class="fa fa-chevron-left"></i> fontend/awesome-react/redux-and-hooks
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/07/16/fontend/awesome-vue/simple-vuex-demo/" rel="prev" title="fontend/awesome-vue/simple-vuex-demo">
+                fontend/awesome-vue/simple-vuex-demo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Yaroku" />
+            
+              <p class="site-author-name" itemprop="name">Yaroku</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Reactivity"><span class="nav-number">1.</span> <span class="nav-text">Reactivity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE"><span class="nav-number">1.0.1.</span> <span class="nav-text">EXERCISE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE-Dependency"><span class="nav-number">1.0.2.</span> <span class="nav-text">EXERCISE Dependency</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE-Observer"><span class="nav-number">1.0.3.</span> <span class="nav-text">EXERCISE Observer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Plugins"><span class="nav-number">2.</span> <span class="nav-text">Plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE-simple-plugin"><span class="nav-number">2.0.1.</span> <span class="nav-text">EXERCISE simple plugin</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Render"><span class="nav-number">3.</span> <span class="nav-text">Render</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-Render-Function-API"><span class="nav-number">3.0.1.</span> <span class="nav-text">Vue Render Function API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE-render-tags"><span class="nav-number">3.0.2.</span> <span class="nav-text">EXERCISE render tags</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE-render-Component"><span class="nav-number">3.0.3.</span> <span class="nav-text">EXERCISE render Component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE-Higher-Order-Component"><span class="nav-number">3.0.4.</span> <span class="nav-text">EXERCISE Higher Order Component</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VUEX"><span class="nav-number">4.</span> <span class="nav-text">VUEX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shared-object"><span class="nav-number">4.0.1.</span> <span class="nav-text">shared object</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-route"><span class="nav-number">5.</span> <span class="nav-text">vue route</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE-1"><span class="nav-number">5.0.1.</span> <span class="nav-text">EXERCISE</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yaroku</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
