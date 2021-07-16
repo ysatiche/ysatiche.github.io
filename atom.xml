@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Yaroku&#39;s Blog Page</title>
   
-  <subtitle>Blog for Code &amp; Life!</subtitle>
+  <subtitle>Blog for happy Code &amp; Life!</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ysatiche.github.io/"/>
@@ -39,6 +39,28 @@
   </entry>
   
   <entry>
+    <title>mobby-research/mobby-germination</title>
+    <link href="https://ysatiche.github.io/2021/07/16/mobby-research/mobby-germination/"/>
+    <id>https://ysatiche.github.io/2021/07/16/mobby-research/mobby-germination/</id>
+    <published>2021-07-16T14:26:40.668Z</published>
+    <updated>2021-07-16T14:26:40.668Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="摩比萌芽篇"><a href="#摩比萌芽篇" class="headerlink" title="摩比萌芽篇"></a>摩比萌芽篇</h1><h2 id="火柴游戏"><a href="#火柴游戏" class="headerlink" title="火柴游戏"></a>火柴游戏</h2><p>使用 【火柴】道具来实现</p><blockquote><p>目的</p></blockquote><p>简单点数方法：按顺序，做标记</p><p>模仿拼摆：正方形，三角形，数字</p><p>图案变换：将图形放大，移动火柴改变图案</p><h2 id="平均分"><a href="#平均分" class="headerlink" title="平均分"></a>平均分</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;摩比萌芽篇&quot;&gt;&lt;a href=&quot;#摩比萌芽篇&quot; class=&quot;headerlink&quot; title=&quot;摩比萌芽篇&quot;&gt;&lt;/a&gt;摩比萌芽篇&lt;/h1&gt;&lt;h2 id=&quot;火柴游戏&quot;&gt;&lt;a href=&quot;#火柴游戏&quot; class=&quot;headerlink&quot; title=&quot;火柴游戏&quot;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>mobby-research/readme</title>
     <link href="https://ysatiche.github.io/2021/07/16/mobby-research/readme/"/>
     <id>https://ysatiche.github.io/2021/07/16/mobby-research/readme/</id>
@@ -53,28 +75,6 @@
       
         &lt;h1 id=&quot;摩比爱数学&quot;&gt;&lt;a href=&quot;#摩比爱数学&quot; class=&quot;headerlink&quot; title=&quot;摩比爱数学&quot;&gt;&lt;/a&gt;摩比爱数学&lt;/h1&gt;&lt;p&gt;调研 【摩比爱数学】 【小学数学人教版】&lt;/p&gt;
 &lt;h2 id=&quot;文章列表&quot;&gt;&lt;a href=&quot;#文章列表&quot; cla
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>mobby-research/mobby-germination</title>
-    <link href="https://ysatiche.github.io/2021/07/16/mobby-research/mobby-germination/"/>
-    <id>https://ysatiche.github.io/2021/07/16/mobby-research/mobby-germination/</id>
-    <published>2021-07-16T14:26:40.668Z</published>
-    <updated>2021-07-16T14:26:40.668Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="摩比萌芽篇"><a href="#摩比萌芽篇" class="headerlink" title="摩比萌芽篇"></a>摩比萌芽篇</h1><h2 id="火柴游戏"><a href="#火柴游戏" class="headerlink" title="火柴游戏"></a>火柴游戏</h2><p>使用 【火柴】道具来实现</p><blockquote><p>目的</p></blockquote><p>简单点数方法：按顺序，做标记</p><p>模仿拼摆：正方形，三角形，数字</p><p>图案变换：将图形放大，移动火柴改变图案</p><h2 id="平均分"><a href="#平均分" class="headerlink" title="平均分"></a>平均分</h2>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;摩比萌芽篇&quot;&gt;&lt;a href=&quot;#摩比萌芽篇&quot; class=&quot;headerlink&quot; title=&quot;摩比萌芽篇&quot;&gt;&lt;/a&gt;摩比萌芽篇&lt;/h1&gt;&lt;h2 id=&quot;火柴游戏&quot;&gt;&lt;a href=&quot;#火柴游戏&quot; class=&quot;headerlink&quot; title=&quot;火柴游戏&quot;
       
     
     </summary>
@@ -112,28 +112,6 @@ const Main = () =&gt; {
   </entry>
   
   <entry>
-    <title>interview</title>
-    <link href="https://ysatiche.github.io/2021/07/16/interview/"/>
-    <id>https://ysatiche.github.io/2021/07/16/interview/</id>
-    <published>2021-07-16T14:26:40.667Z</published>
-    <updated>2021-07-16T14:26:40.667Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2><h2 id="链式调用实现"><a href="#链式调用实现" class="headerlink" title="链式调用实现"></a>链式调用实现</h2><h2 id="防抖与节流"><a href="#防抖与节流" class="headerlink" title="防抖与节流"></a>防抖与节流</h2><h2 id="二叉搜索树-返回一棵-平衡后-的二叉搜索树"><a href="#二叉搜索树-返回一棵-平衡后-的二叉搜索树" class="headerlink" title="二叉搜索树 返回一棵 平衡后 的二叉搜索树"></a>二叉搜索树 返回一棵 平衡后 的二叉搜索树</h2><h2 id="最大连续子序列的和"><a href="#最大连续子序列的和" class="headerlink" title="最大连续子序列的和"></a>最大连续子序列的和</h2><h2 id="js-和-ts的区别"><a href="#js-和-ts的区别" class="headerlink" title="js 和 ts的区别"></a>js 和 ts的区别</h2><h2 id="vue和react和jquery区别"><a href="#vue和react和jquery区别" class="headerlink" title="vue和react和jquery区别"></a>vue和react和jquery区别</h2><h2 id="webpack-使用"><a href="#webpack-使用" class="headerlink" title="webpack 使用"></a>webpack 使用</h2>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;面试题&quot;&gt;&lt;a href=&quot;#面试题&quot; class=&quot;headerlink&quot; title=&quot;面试题&quot;&gt;&lt;/a&gt;面试题&lt;/h1&gt;&lt;h2 id=&quot;自我介绍&quot;&gt;&lt;a href=&quot;#自我介绍&quot; class=&quot;headerlink&quot; title=&quot;自我介绍&quot;&gt;&lt;/a&gt;自我介
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>Hello World</title>
     <link href="https://ysatiche.github.io/2021/07/16/hello-world/"/>
     <id>https://ysatiche.github.io/2021/07/16/hello-world/</id>
@@ -153,6 +131,28 @@ const Main = () =&gt; {
     
     
       <category term="web前端" scheme="https://ysatiche.github.io/categories/web%E5%89%8D%E7%AB%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>interview</title>
+    <link href="https://ysatiche.github.io/2021/07/16/interview/"/>
+    <id>https://ysatiche.github.io/2021/07/16/interview/</id>
+    <published>2021-07-16T14:26:40.667Z</published>
+    <updated>2021-07-16T14:26:40.667Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h1><h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2><h2 id="链式调用实现"><a href="#链式调用实现" class="headerlink" title="链式调用实现"></a>链式调用实现</h2><h2 id="防抖与节流"><a href="#防抖与节流" class="headerlink" title="防抖与节流"></a>防抖与节流</h2><h2 id="二叉搜索树-返回一棵-平衡后-的二叉搜索树"><a href="#二叉搜索树-返回一棵-平衡后-的二叉搜索树" class="headerlink" title="二叉搜索树 返回一棵 平衡后 的二叉搜索树"></a>二叉搜索树 返回一棵 平衡后 的二叉搜索树</h2><h2 id="最大连续子序列的和"><a href="#最大连续子序列的和" class="headerlink" title="最大连续子序列的和"></a>最大连续子序列的和</h2><h2 id="js-和-ts的区别"><a href="#js-和-ts的区别" class="headerlink" title="js 和 ts的区别"></a>js 和 ts的区别</h2><h2 id="vue和react和jquery区别"><a href="#vue和react和jquery区别" class="headerlink" title="vue和react和jquery区别"></a>vue和react和jquery区别</h2><h2 id="webpack-使用"><a href="#webpack-使用" class="headerlink" title="webpack 使用"></a>webpack 使用</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;面试题&quot;&gt;&lt;a href=&quot;#面试题&quot; class=&quot;headerlink&quot; title=&quot;面试题&quot;&gt;&lt;/a&gt;面试题&lt;/h1&gt;&lt;h2 id=&quot;自我介绍&quot;&gt;&lt;a href=&quot;#自我介绍&quot; class=&quot;headerlink&quot; title=&quot;自我介绍&quot;&gt;&lt;/a&gt;自我介
+      
+    
+    </summary>
+    
     
     
   </entry>
@@ -291,38 +291,6 @@ const Main = () =&gt; {
   </entry>
   
   <entry>
-    <title>Vue2 Vuex</title>
-    <link href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue2-vuex/"/>
-    <id>https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue2-vuex/</id>
-    <published>2021-07-16T14:26:40.664Z</published>
-    <updated>2021-07-16T14:26:40.664Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="VUEX"><a href="#VUEX" class="headerlink" title="VUEX"></a>VUEX</h1><h2 id="shared-object"><a href="#shared-object" class="headerlink" title="shared object"></a>shared object</h2><p>if we want to have a shared object in more reuseful vue component.we can get the object out like this.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">  count: <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Counter = &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> state</span><br><span class="line">  &#125;,</span><br><span class="line">  render (h) &#123;</span><br><span class="line">    <span class="keyword">return</span> h(<span class="string">'div'</span>, <span class="keyword">this</span>.count)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123; Counter &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h2 id="shared-object-to-be-reactivity"><a href="#shared-object-to-be-reactivity" class="headerlink" title="shared object to be reactivity"></a>shared object to be reactivity</h2><p>if <code>count</code> can be reactivity, using Vue, we know the data defined in vue is reactivity. </p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"inc"</span>&gt;</span>inc<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> state = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line">  data: &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> () &#123;</span></span><br><span class="line">      count: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    inc () &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.count++</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> Counter = &#123;</span></span><br><span class="line">  render (h) &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> h(<span class="string">'div'</span>, state.count)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el: <span class="string">'#app'</span>,</span></span><br><span class="line">  components: &#123; Counter &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    inc () &#123;</span><br><span class="line">      state.inc()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>we can change the syntax style. make it more like vuex syntax</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"inc"</span>&gt;</span>inc<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">createStore</span> <span class="params">(&#123; state, mutations &#125;)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">return</span> <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line">    data: &#123; state &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      commit (mutationType) &#123;</span><br><span class="line"><span class="actionscript">        mutations[mutationType](<span class="keyword">this</span>.state)</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> store = createStore(&#123;</span></span><br><span class="line">  state: &#123; count: 0 &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    inc (state) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> Counter = &#123;</span></span><br><span class="line">  render (h) &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> h(<span class="string">'div'</span>, store.state.count)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el: <span class="string">'#app'</span>,</span></span><br><span class="line">  components: &#123; Counter &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    inc () &#123;</span><br><span class="line"><span class="actionscript">      store.commit(<span class="string">'inc'</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;VUEX&quot;&gt;&lt;a href=&quot;#VUEX&quot; class=&quot;headerlink&quot; title=&quot;VUEX&quot;&gt;&lt;/a&gt;VUEX&lt;/h1&gt;&lt;h2 id=&quot;shared-object&quot;&gt;&lt;a href=&quot;#shared-object&quot; class=&quot;headerlink
-      
-    
-    </summary>
-    
-    
-      <category term="web前端" scheme="https://ysatiche.github.io/categories/web%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="vue" scheme="https://ysatiche.github.io/categories/web%E5%89%8D%E7%AB%AF/vue/"/>
-    
-    
-      <category term="vue" scheme="https://ysatiche.github.io/tags/vue/"/>
-    
-      <category term="vue2" scheme="https://ysatiche.github.io/tags/vue2/"/>
-    
-      <category term="vuex" scheme="https://ysatiche.github.io/tags/vuex/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Vue2 Route</title>
     <link href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue2-route/"/>
     <id>https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue2-route/</id>
@@ -379,6 +347,38 @@ const Main = () =&gt; {
     
     
       <category term="webpack" scheme="https://ysatiche.github.io/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue2 Vuex</title>
+    <link href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue2-vuex/"/>
+    <id>https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue2-vuex/</id>
+    <published>2021-07-16T14:26:40.664Z</published>
+    <updated>2021-07-16T14:26:40.664Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="VUEX"><a href="#VUEX" class="headerlink" title="VUEX"></a>VUEX</h1><h2 id="shared-object"><a href="#shared-object" class="headerlink" title="shared object"></a>shared object</h2><p>if we want to have a shared object in more reuseful vue component.we can get the object out like this.</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">  count: <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Counter = &#123;</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> state</span><br><span class="line">  &#125;,</span><br><span class="line">  render (h) &#123;</span><br><span class="line">    <span class="keyword">return</span> h(<span class="string">'div'</span>, <span class="keyword">this</span>.count)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123; Counter &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h2 id="shared-object-to-be-reactivity"><a href="#shared-object-to-be-reactivity" class="headerlink" title="shared object to be reactivity"></a>shared object to be reactivity</h2><p>if <code>count</code> can be reactivity, using Vue, we know the data defined in vue is reactivity. </p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"inc"</span>&gt;</span>inc<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> state = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line">  data: &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> () &#123;</span></span><br><span class="line">      count: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    inc () &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.count++</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> Counter = &#123;</span></span><br><span class="line">  render (h) &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> h(<span class="string">'div'</span>, state.count)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el: <span class="string">'#app'</span>,</span></span><br><span class="line">  components: &#123; Counter &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    inc () &#123;</span><br><span class="line">      state.inc()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>we can change the syntax style. make it more like vuex syntax</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./node_modules/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"inc"</span>&gt;</span>inc<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">createStore</span> <span class="params">(&#123; state, mutations &#125;)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">return</span> <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line">    data: &#123; state &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      commit (mutationType) &#123;</span><br><span class="line"><span class="actionscript">        mutations[mutationType](<span class="keyword">this</span>.state)</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> store = createStore(&#123;</span></span><br><span class="line">  state: &#123; count: 0 &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    inc (state) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="actionscript"><span class="keyword">const</span> Counter = &#123;</span></span><br><span class="line">  render (h) &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> h(<span class="string">'div'</span>, store.state.count)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">  el: <span class="string">'#app'</span>,</span></span><br><span class="line">  components: &#123; Counter &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    inc () &#123;</span><br><span class="line"><span class="actionscript">      store.commit(<span class="string">'inc'</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;VUEX&quot;&gt;&lt;a href=&quot;#VUEX&quot; class=&quot;headerlink&quot; title=&quot;VUEX&quot;&gt;&lt;/a&gt;VUEX&lt;/h1&gt;&lt;h2 id=&quot;shared-object&quot;&gt;&lt;a href=&quot;#shared-object&quot; class=&quot;headerlink
+      
+    
+    </summary>
+    
+    
+      <category term="web前端" scheme="https://ysatiche.github.io/categories/web%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="vue" scheme="https://ysatiche.github.io/categories/web%E5%89%8D%E7%AB%AF/vue/"/>
+    
+    
+      <category term="vue" scheme="https://ysatiche.github.io/tags/vue/"/>
+    
+      <category term="vue2" scheme="https://ysatiche.github.io/tags/vue2/"/>
+    
+      <category term="vuex" scheme="https://ysatiche.github.io/tags/vuex/"/>
     
   </entry>
   
@@ -479,28 +479,6 @@ const Main = () =&gt; {
   </entry>
   
   <entry>
-    <title>fontend/awesome-vue/simple-vuex-demo</title>
-    <link href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/simple-vuex-demo/"/>
-    <id>https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/simple-vuex-demo/</id>
-    <published>2021-07-16T14:26:40.662Z</published>
-    <updated>2021-07-16T14:26:40.662Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> service = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      </span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapGetters</span>(<span class="params">getterNameArray</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!getterNameArray || !getterNameArray.length) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> getters = &#123;&#125;;</span><br><span class="line">  getterNameArray.forEach(<span class="function"><span class="params">getterName</span> =&gt;</span> &#123;</span><br><span class="line">    getters[getterName] = <span class="function"><span class="params">()</span> =&gt;</span> service[getterName];</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> getters;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapActions</span>(<span class="params">actionNameArray</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!actionNameArray || !actionNameArray.length) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> actions = &#123;&#125;;</span><br><span class="line">  actionNameArray.forEach(<span class="function"><span class="params">actionName</span> =&gt;</span> &#123;</span><br><span class="line">    actions[actionName] = <span class="function">(<span class="params">...params</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> service[actionName](...params);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> actions;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; mapActions, mapGetters, service &#125;;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;l
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>Vue Basic Intro</title>
     <link href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue-basic/"/>
     <id>https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/vue-basic/</id>
@@ -542,6 +520,28 @@ const Main = () =&gt; {
       
       
         &lt;h1 id=&quot;awesome-vue&quot;&gt;&lt;a href=&quot;#awesome-vue&quot; class=&quot;headerlink&quot; title=&quot;awesome-vue&quot;&gt;&lt;/a&gt;awesome-vue&lt;/h1&gt;&lt;h2 id=&quot;Content&quot;&gt;&lt;a href=&quot;#Content&quot; c
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>fontend/awesome-vue/simple-vuex-demo</title>
+    <link href="https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/simple-vuex-demo/"/>
+    <id>https://ysatiche.github.io/2021/07/16/fontend/awesome-vue/simple-vuex-demo/</id>
+    <published>2021-07-16T14:26:40.662Z</published>
+    <updated>2021-07-16T14:26:40.662Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> service = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      </span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapGetters</span>(<span class="params">getterNameArray</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!getterNameArray || !getterNameArray.length) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> getters = &#123;&#125;;</span><br><span class="line">  getterNameArray.forEach(<span class="function"><span class="params">getterName</span> =&gt;</span> &#123;</span><br><span class="line">    getters[getterName] = <span class="function"><span class="params">()</span> =&gt;</span> service[getterName];</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> getters;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapActions</span>(<span class="params">actionNameArray</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!actionNameArray || !actionNameArray.length) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> actions = &#123;&#125;;</span><br><span class="line">  actionNameArray.forEach(<span class="function"><span class="params">actionName</span> =&gt;</span> &#123;</span><br><span class="line">    actions[actionName] = <span class="function">(<span class="params">...params</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> service[actionName](...params);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> actions;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> &#123; mapActions, mapGetters, service &#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;l
       
     
     </summary>
