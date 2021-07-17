@@ -94,9 +94,9 @@ index_with_subtitle: false
 menu:
   home: /
   #about: /about/ || user
-  #tags: /tags/ || tags
-  #categories: /categories/ || th
-  archives: /archives/ || archive
+  tags: /tags
+  categories: /categories
+  archives: /archives
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
@@ -104,6 +104,12 @@ menu:
 # Enable/Disable menu icons.
 menu_icons:
   enable: true
+  home: home
+  # about: user
+  categories: th
+  tags: tags
+  archives: archive
+  # commonweal: heartbeat
 
 
 # ---------------------------------------------------------------
@@ -175,7 +181,7 @@ toc:
 sidebar:
   # Sidebar Position, available value: left | right (only for Pisces | Gemini).
   position: left
-  #position: right
+  # position: right
 
   # Sidebar Display, available value (only for Muse | Mist):
   #  - post    expand on posts automatically. Default.
@@ -183,7 +189,7 @@ sidebar:
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggle.
   display: post
-  #display: always
+  # display: always
   #display: hide
   #display: remove
 

@@ -11,7 +11,7 @@ master分支放源码
 ```bash
 yarn install
 
-git clone https://github.com/iissnan/hexo-theme-next themes/next
+git clone https://github.com/iissnan/hexo-theme-next themes/next // 当themes/next目录下没有文件时需要，有则不需要，说明之前已经下载了
 
 npm run clean
 
@@ -31,6 +31,7 @@ npm run deploy // 部署到git
 > vscode 中使用 `npm run deploy` 报链接出错
 
 使用自带cmd执行命令
+
 
 
 ### category
