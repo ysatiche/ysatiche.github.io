@@ -9,7 +9,7 @@ master分支放源码
 # 运行
 
 ```bash
-yarn install
+yarn install or npm install
 
 git clone https://github.com/iissnan/hexo-theme-next themes/next // 当themes/next目录下没有文件时需要，有则不需要，说明之前已经下载了
 
@@ -49,3 +49,8 @@ web前端：vue, electron, webpack等
 ### tags
 
 tags是在二级目录下再添加具体内容，比如vue中data的响应式原理的文章tag应该是 ['vue', 'vue2 data', '响应式原理']
+
+
+## todolost
+
+- 图片加载不出来
