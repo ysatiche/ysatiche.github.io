@@ -20,4 +20,6 @@ hexo5 + next8.6.1
 
 好了，放上最新版本的next相关问题官方解答地址： `https://github.com/next-theme/hexo-theme-next/issues/4`
 
+由于插入本地图片仍然有问题，所以使用github作为远程图片仓库，方式详情参考 `https://github.com/Molunerfinn/PicGo` 上传后就可以使用远程链接图片了。
+
 
