@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ysatiche.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="笔记点选和圈选 笔记的数据化和笔记选择含义 对于每一条笔记，在数据层面，只要储存笔记的点的数组（点是有序的）且知道每个点的连接方式（直线，贝赛尔曲线连接等）就可以还原出该条笔记。  所以，对于笔记的选择，只要判断所选区域里是否含有点数组中的某一点，即可判定在所选区域内。 笔记圈选所选区域笔记圈选的所选区域其实是该条曲线绘制后，首尾点连接后canvas判定的区域。 笔记圈选区域的简单判断我们知道，每">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【canvas自学教程四】canvas实现圈选点选">
+<meta property="og:url" content="https://ysatiche.github.io/2021/07/19/canvas-learn-choose/index.html">
+<meta property="og:site_name" content="Yaroku&#39;s Blog Page">
+<meta property="og:description" content="笔记点选和圈选 笔记的数据化和笔记选择含义 对于每一条笔记，在数据层面，只要储存笔记的点的数组（点是有序的）且知道每个点的连接方式（直线，贝赛尔曲线连接等）就可以还原出该条笔记。  所以，对于笔记的选择，只要判断所选区域里是否含有点数组中的某一点，即可判定在所选区域内。 笔记圈选所选区域笔记圈选的所选区域其实是该条曲线绘制后，首尾点连接后canvas判定的区域。 笔记圈选区域的简单判断我们知道，每">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-07-19T14:07:44.000Z">
+<meta property="article:modified_time" content="2021-07-19T14:13:14.128Z">
+<meta property="article:author" content="Yaroku">
+<meta property="article:tag" content="canvas">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ysatiche.github.io/2021/07/19/canvas-learn-choose/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://ysatiche.github.io/2021/07/19/canvas-learn-choose/","path":"2021/07/19/canvas-learn-choose/","title":"【canvas自学教程四】canvas实现圈选点选"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【canvas自学教程四】canvas实现圈选点选 | Yaroku's Blog Page</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Yaroku's Blog Page</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog for happy Code & Life!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0%E7%82%B9%E9%80%89%E5%92%8C%E5%9C%88%E9%80%89"><span class="nav-number">1.</span> <span class="nav-text">笔记点选和圈选</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%96%E5%92%8C%E7%AC%94%E8%AE%B0%E9%80%89%E6%8B%A9%E5%90%AB%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">笔记的数据化和笔记选择含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0%E5%9C%88%E9%80%89"><span class="nav-number">1.2.</span> <span class="nav-text">笔记圈选</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%80%E9%80%89%E5%8C%BA%E5%9F%9F"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">所选区域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0%E5%9C%88%E9%80%89%E5%8C%BA%E5%9F%9F%E7%9A%84%E7%AE%80%E5%8D%95%E5%88%A4%E6%96%AD"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">笔记圈选区域的简单判断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8ctx-isPointInPath-x-y-%E6%9D%A5%E5%88%A4%E6%96%AD"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">使用ctx.isPointInPath(x, y)来判断</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yaroku"
+      src="/images/me.JPG">
+  <p class="site-author-name" itemprop="name">Yaroku</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://ysatiche.github.io/2021/07/19/canvas-learn-choose/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.JPG">
+      <meta itemprop="name" content="Yaroku">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yaroku's Blog Page">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【canvas自学教程四】canvas实现圈选点选
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-07-19 22:07:44 / Modified: 22:13:14" itemprop="dateCreated datePublished" datetime="2021-07-19T22:07:44+08:00">2021-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/fontend/" itemprop="url" rel="index"><span itemprop="name">fontend</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="笔记点选和圈选"><a href="#笔记点选和圈选" class="headerlink" title="笔记点选和圈选"></a>笔记点选和圈选</h1><hr>
+<h2 id="笔记的数据化和笔记选择含义"><a href="#笔记的数据化和笔记选择含义" class="headerlink" title="笔记的数据化和笔记选择含义"></a>笔记的数据化和笔记选择含义</h2><blockquote>
+<p>对于每一条笔记，在数据层面，只要储存笔记的点的数组（点是有序的）且知道每个点的连接方式（直线，贝赛尔曲线连接等）就可以还原出该条笔记。</p>
+</blockquote>
+<p>所以，对于笔记的选择，只要判断所选区域里是否含有点数组中的某一点，即可判定在所选区域内。</p>
+<h2 id="笔记圈选"><a href="#笔记圈选" class="headerlink" title="笔记圈选"></a>笔记圈选</h2><h4 id="所选区域"><a href="#所选区域" class="headerlink" title="所选区域"></a>所选区域</h4><p>笔记圈选的所选区域其实是该条曲线绘制后，首尾点连接后canvas判定的区域。</p>
+<h4 id="笔记圈选区域的简单判断"><a href="#笔记圈选区域的简单判断" class="headerlink" title="笔记圈选区域的简单判断"></a>笔记圈选区域的简单判断</h4><p>我们知道，每一条笔记里储存的点的量都是很大的，有些甚至能到上万点，而我们需要对每一条笔记都进行判断，所以，非常耗性能，那我们是否能进行一些简单的预判断，来处理一些笔记容易判断的情况呢？</p>
+<p>我们知道，每一天笔记都可以用一个矩形包围起来，矩形的可以通过遍历这些点获取，矩形的左上点为((left)min, (top)min)即所有点的left，top值最小值时的点，矩形的右下角点为((right)max, bottom(max))</p>
+<p>所以，假设两个笔记的外矩形不想交，则证明两条笔记肯定不相交。</p>
+<h4 id="使用ctx-isPointInPath-x-y-来判断"><a href="#使用ctx-isPointInPath-x-y-来判断" class="headerlink" title="使用ctx.isPointInPath(x, y)来判断"></a>使用ctx.isPointInPath(x, y)来判断</h4><p>在 canvas 中，我们可以使用ctx.isPointInPath(x, y)来判断点是否在当前ctx围成的区域中。</p>
+<p><font color=#D4B51B>注意：ctx.isPointInPath(x, y)判断的区域指的是当前最后一条路径（即最后一次beginPath()）的最后一次子路径（即最后一次moveTo()）围城的区域,同时ctx.scale不能设置成倍数，否则得进行其他处理</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">// 框选处理</span><br><span class="line">handleChoosePen () &#123;</span><br><span class="line">  // this.eles 储存当前笔记的数组，每一个元素就是一条笔记（一条笔记是一个对象）</span><br><span class="line">  if (this.eles.length &lt; 1) return</span><br><span class="line">  // 获取框选的笔记,</span><br><span class="line">  let chooseZone = this.eles.pop()</span><br><span class="line">  // this.historyIndex记录当前显示笔记的index</span><br><span class="line">  this.historyIndex = this.eles.length - 1</span><br><span class="line">  if (chooseZone.drawPoints.length &lt; 1) return</span><br><span class="line">  let choosedEleIdxArr = [] // 被选中的笔记index</span><br><span class="line">  let choosedEleZoomOpt = null // 被选中的区域框</span><br><span class="line">  // 点选，点选的话就是将当前点为中心的一个正方形区域</span><br><span class="line">  if (chooseZone.drawPoints.length &lt;= 10) &#123;</span><br><span class="line">    this.clear(this.ctxTemp, this.canvTemp)</span><br><span class="line">    let clickPoint = chooseZone.drawPoints[0]</span><br><span class="line">    let baseRect = 20</span><br><span class="line">    this.ctxTemp.beginPath()</span><br><span class="line">    this.ctxTemp.moveTo(clickPoint.x - baseRect / 2, clickPoint.y - baseRect / 2)</span><br><span class="line">    this.ctxTemp.lineTo(clickPoint.x - baseRect / 2, clickPoint.y + baseRect / 2)</span><br><span class="line">    this.ctxTemp.lineTo(clickPoint.x + baseRect / 2, clickPoint.y + baseRect / 2)</span><br><span class="line">    this.ctxTemp.lineTo(clickPoint.x + baseRect / 2, clickPoint.y - baseRect / 2)</span><br><span class="line">    this.ctxTemp.fill()</span><br><span class="line">    let arr = [</span><br><span class="line">      &#123;</span><br><span class="line">        x: clickPoint.x - baseRect / 2,</span><br><span class="line">        y: clickPoint.y - baseRect / 2</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        x: clickPoint.x - baseRect / 2,</span><br><span class="line">        y: clickPoint.y + baseRect / 2</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        x: clickPoint.x + baseRect / 2,</span><br><span class="line">        y: clickPoint.y + baseRect / 2</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        x: clickPoint.x + baseRect / 2,</span><br><span class="line">        y: clickPoint.y - baseRect / 2</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">    chooseZone.drawPoints = arr</span><br><span class="line">  &#125;</span><br><span class="line">  // 圈选</span><br><span class="line">  let chooseZoneInfo = this.getPenOuterZone(chooseZone.drawPoints)</span><br><span class="line">  let shapePoint = new ShapePoint()</span><br><span class="line">  for (let i = 0; i &lt; this.eles.length; i++) &#123;</span><br><span class="line">    let tmpEle = this.eles[i]</span><br><span class="line">    // 检测当前笔记是几何图形</span><br><span class="line">    if (tmpEle.type === &#x27;shape&#x27;) &#123;</span><br><span class="line">      // 获取几何图形的点，通过线获取点</span><br><span class="line">      let shapeArr = shapePoint._getShapePoints(tmpEle.config.type, tmpEle.config.start, tmpEle.config.end)</span><br><span class="line">      tmpEle.drawPoints = shapeArr</span><br><span class="line">    &#125;</span><br><span class="line">    if (tmpEle.type === &#x27;pen&#x27; || tmpEle.type === &#x27;shape&#x27;) &#123;</span><br><span class="line">      // 获取每一个笔记的外框</span><br><span class="line">      const info = this.getPenOuterZone(tmpEle.drawPoints)</span><br><span class="line">      // 判断选中区域的外框与笔记外框是否相交</span><br><span class="line">      if (this.isRectOverlap(chooseZoneInfo, info)) &#123;</span><br><span class="line">        // 对每一个点进行检测</span><br><span class="line">        for (let j = 0; j &lt; tmpEle.drawPoints.length; j++) &#123;</span><br><span class="line">          let point = tmpEle.drawPoints[j]</span><br><span class="line">          // 判断点是否在选中区域的外框，如果在外框中则使用isPointInPath判断</span><br><span class="line">          if (this.isPointInRect(point, chooseZoneInfo) &amp;&amp; this.ctxTemp.isPointInPath(point.x, point.y)) &#123;</span><br><span class="line">            console.warn(`第$&#123;i + 1&#125;笔被选中`)</span><br><span class="line">            choosedEleIdxArr.push(i)</span><br><span class="line">            break</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  this.clear(this.ctxTemp, this.canvTemp)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 获取笔记的外方框</span><br><span class="line">getPenOuterZone (pointList = []) &#123;</span><br><span class="line">  if (pointList.length &lt; 1) return null</span><br><span class="line">  let left = pointList[0].x</span><br><span class="line">  let right = pointList[0].x</span><br><span class="line">  let top = pointList[0].y</span><br><span class="line">  let bottom = pointList[0].y</span><br><span class="line">  for (let i = 1; i &lt; pointList.length; i++) &#123;</span><br><span class="line">    if (pointList[i].x &lt; left) &#123;</span><br><span class="line">      left = pointList[i].x</span><br><span class="line">    &#125;</span><br><span class="line">    if (pointList[i].x &gt; right) &#123;</span><br><span class="line">      right = pointList[i].x</span><br><span class="line">    &#125;</span><br><span class="line">    if (pointList[i].y &lt; top) &#123;</span><br><span class="line">      top = pointList[i].y</span><br><span class="line">    &#125;</span><br><span class="line">    if (pointList[i].y &gt; bottom) &#123;</span><br><span class="line">      bottom = pointList[i].y</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  // if (top &lt;= bottom || left &lt;= right) &#123;</span><br><span class="line">  //   return null</span><br><span class="line">  // &#125;</span><br><span class="line">  return &#123;</span><br><span class="line">    left: left,</span><br><span class="line">    right: right,</span><br><span class="line">    top: top,</span><br><span class="line">    bottom: bottom</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 判断两个方框是否相交</span><br><span class="line">isRectOverlap (r1, r2) &#123;</span><br><span class="line">  return !(((r1.right &lt; r2.left) || (r1.bottom &lt; r2.top)) || ((r2.right &lt; r1.left) || (r2.bottom &lt; r1.top)))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 判断点是否在方框里</span><br><span class="line">isPointInRect (point, r) &#123;</span><br><span class="line">  return ((point.x &gt;= r.left) &amp;&amp; (point.x &lt;= r.right) &amp;&amp; (point.y &gt;= r.top) &amp;&amp; (point.y &lt;= r.bottom))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/canvas/" rel="tag"># canvas</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/19/canvas-learn-pen/" rel="prev" title="【canvas自学教程二】canvas实现笔记功能">
+                  <i class="fa fa-chevron-left"></i> 【canvas自学教程二】canvas实现笔记功能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/19/canvas-learn-base/" rel="next" title="【canvas自学教程一】canvas基础">
+                  【canvas自学教程一】canvas基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yaroku</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

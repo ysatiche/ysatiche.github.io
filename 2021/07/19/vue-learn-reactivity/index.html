@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ysatiche.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Reactivitywhat’s reactivity?let us show an example on relationship with variables. 123456789let a &#x3D; 3let b &#x3D; a * 10console.log(b) &#x2F;&#x2F; 30a &#x3D; 4console.log(b) &#x2F;&#x2F; 30&#x2F;&#x2F; if we want b to change when a changed">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【vue学习二】vue响应式原理">
+<meta property="og:url" content="https://ysatiche.github.io/2021/07/19/vue-learn-reactivity/index.html">
+<meta property="og:site_name" content="Yaroku&#39;s Blog Page">
+<meta property="og:description" content="Reactivitywhat’s reactivity?let us show an example on relationship with variables. 123456789let a &#x3D; 3let b &#x3D; a * 10console.log(b) &#x2F;&#x2F; 30a &#x3D; 4console.log(b) &#x2F;&#x2F; 30&#x2F;&#x2F; if we want b to change when a changed">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-07-19T14:07:44.000Z">
+<meta property="article:modified_time" content="2021-07-19T14:18:44.836Z">
+<meta property="article:author" content="Yaroku">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ysatiche.github.io/2021/07/19/vue-learn-reactivity/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://ysatiche.github.io/2021/07/19/vue-learn-reactivity/","path":"2021/07/19/vue-learn-reactivity/","title":"【vue学习二】vue响应式原理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【vue学习二】vue响应式原理 | Yaroku's Blog Page</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Yaroku's Blog Page</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog for happy Code & Life!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Reactivity"><span class="nav-number">1.</span> <span class="nav-text">Reactivity</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#what%E2%80%99s-reactivity"><span class="nav-number">1.1.</span> <span class="nav-text">what’s reactivity?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-defineProperty"><span class="nav-number">1.2.</span> <span class="nav-text">Object.defineProperty</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#example"><span class="nav-number">1.2.1.</span> <span class="nav-text">example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE"><span class="nav-number">1.2.2.</span> <span class="nav-text">EXERCISE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#collect-dependency"><span class="nav-number">1.3.</span> <span class="nav-text">collect dependency</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE-Dependency"><span class="nav-number">1.3.1.</span> <span class="nav-text">EXERCISE Dependency</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set-watcher"><span class="nav-number">1.4.</span> <span class="nav-text">set watcher</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EXERCISE-Observer"><span class="nav-number">1.4.1.</span> <span class="nav-text">EXERCISE Observer</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yaroku"
+      src="/images/me.JPG">
+  <p class="site-author-name" itemprop="name">Yaroku</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://ysatiche.github.io/2021/07/19/vue-learn-reactivity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.JPG">
+      <meta itemprop="name" content="Yaroku">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yaroku's Blog Page">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【vue学习二】vue响应式原理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-07-19 22:07:44 / Modified: 22:18:44" itemprop="dateCreated datePublished" datetime="2021-07-19T22:07:44+08:00">2021-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/fontend/" itemprop="url" rel="index"><span itemprop="name">fontend</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Reactivity"><a href="#Reactivity" class="headerlink" title="Reactivity"></a>Reactivity</h1><h2 id="what’s-reactivity"><a href="#what’s-reactivity" class="headerlink" title="what’s reactivity?"></a>what’s reactivity?</h2><p>let us show an example on relationship with variables.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> b = a * <span class="number">10</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 30</span></span><br><span class="line">a = <span class="number">4</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 30</span></span><br><span class="line"><span class="comment">// if we want b to change when a changed</span></span><br><span class="line">b = a * <span class="number">10</span></span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// 40</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>so if we have a function to exec when a changed. let us say.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onAChanged(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  b = a * <span class="number">10</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>now, when we move to DOM.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;cell b1&quot;</span>&gt;</span>&#123;&#123; b &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="comment">// when a change</span></span></span><br><span class="line"><span class="javascript">onStateChanged(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.querySelector(<span class="string">&#x27;cell.b&#x27;</span>).textContent = state.a * <span class="number">10</span></span></span><br><span class="line"><span class="javascript">&#125;)</span></span><br><span class="line"><span class="javascript"><span class="comment">// in other expression</span></span></span><br><span class="line"><span class="javascript">onStateChanged(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">  view = render(state)</span></span><br><span class="line"><span class="javascript">&#125;)</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>in react.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onStateChanged(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  view = render(state)</span><br><span class="line">&#125;)</span><br><span class="line">setState(&#123; <span class="attr">a</span>: <span class="number">5</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Object-defineProperty"><a href="#Object-defineProperty" class="headerlink" title="Object.defineProperty"></a>Object.defineProperty</h2><p>vue use <code>Object.defineProperty</code> to catch variable get and set.</p>
+<blockquote>
+<p><code>Object.defineProperty</code> basic usage</p>
+</blockquote>
+<p><code>Object.defineProperty(obj, prop, descriptor)</code></p>
+<p><code>obj</code> object to defined prop.</p>
+<p><code>prop</code> object prop to defined</p>
+<p><code>descriptor</code> descriptor for defination</p>
+<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">&#x27;key&#x27;</span>, &#123;</span><br><span class="line">  <span class="comment">// enumerable: true if and only if the type of this property descriptor may be changed and </span></span><br><span class="line">  <span class="comment">// if the property may be deleted from the corresponding object</span></span><br><span class="line">  <span class="attr">enumerable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// configurable: true if and only if this property shows up during enumeration of the properties</span></span><br><span class="line">  <span class="comment">// on the corresponding object.</span></span><br><span class="line">  <span class="attr">configurable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// writable: true if and only if the value associated with the property may be changed</span></span><br><span class="line">  <span class="comment">// with an assignment operator.</span></span><br><span class="line">  <span class="attr">writable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// A function which serves as a getter for the property, or undefined if there is no getter.</span></span><br><span class="line">  get () &#123;</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// A function which serves as a setter for the property, or undefined if there is no setter.</span></span><br><span class="line">  set (newVal) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>we can take an exercise for <code>Object.defineProperty</code></p>
+<h3 id="EXERCISE"><a href="#EXERCISE" class="headerlink" title="EXERCISE"></a>EXERCISE</h3><p>Implement a convert function that</p>
+<ul>
+<li><p>take an Object as the argument</p>
+</li>
+<li><p>convert the Object’s property to place into getter/setters using Object.defineProperty.</p>
+</li>
+<li><p>The converted object should retain origin behavior, but at the sanme time log all the get/set operations.</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">convert</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">Object</span>.keys(obj).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> internalVal = obj[key]</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">      get () &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`getting key &quot;<span class="subst">$&#123;key&#125;</span>&quot;: &quot;<span class="subst">$&#123;internalVal&#125;</span>&quot;`</span>)</span><br><span class="line">        <span class="keyword">return</span> internalVal</span><br><span class="line">      &#125;,</span><br><span class="line">      set (newValue) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`set key &quot;<span class="subst">$&#123;key&#125;</span>&quot;: &quot;<span class="subst">$&#123;newValue&#125;</span>&quot;`</span>)</span><br><span class="line">        internalVal = newValue </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>if we want build a data reactivity system, as for a variable, we should know which other variable rely on this variable.Just like above</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> b = a * <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>b</code> is rely on <code>a</code>.But where can we find these dependency, yep, we can catch it by <code> Object.defineProperty get</code> if <code>b</code> want to get <code>a</code>, now <code>b</code> is <code>a</code> dependency, we can catch <code>b</code> from <code>a</code> get function.</p>
+</li>
+<li><p>if we have collect <code>a</code> dependency, next thing is that we should nofity <code>a</code> all dependency to update when <code>a</code> changed(just like tell <code>b</code> that <code>a</code> is different, so you should update), where can we do thiese thing, yep we can do this in <code>a</code> set function.</p>
+</li>
+</ul>
+<p> these are two main rules in build reactivity system, you should undestand it.</p>
+<p> But what really we do in vue2, please keep watching.</p>
+<h2 id="collect-dependency"><a href="#collect-dependency" class="headerlink" title="collect dependency"></a>collect dependency</h2><h3 id="EXERCISE-Dependency"><a href="#EXERCISE-Dependency" class="headerlink" title="EXERCISE Dependency"></a>EXERCISE Dependency</h3><ul>
+<li><p>create Dep class with two methods: depend and notify</p>
+</li>
+<li><p>create an autorun function that takes an updater function.</p>
+</li>
+<li><p>Inside the update function, you can explicitly depend on an instance of Dep by calling dep.depend()</p>
+</li>
+<li><p>later, you can triggle the update function to run aigain by calling dep.notify()</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.Dep = <span class="class"><span class="keyword">class</span> <span class="title">Dep</span> </span>&#123;</span><br><span class="line">  <span class="title">constructor</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">this</span>.subcribers = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line">  &#125;</span><br><span class="line">  depend () &#123;</span><br><span class="line">    <span class="keyword">if</span> (activeUpdate) &#123;</span><br><span class="line">      <span class="built_in">this</span>.subscribers.add(activeUpdate)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  notify () &#123;</span><br><span class="line">    <span class="built_in">this</span>.subscribers.forEach(<span class="function"><span class="params">sub</span> =&gt;</span> sub())</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> activeUpdate</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autorun</span> (<span class="params">update</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">wrappedUpdate</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    activeUpdate = wrappedUpdate</span><br><span class="line">    update()</span><br><span class="line">    activeUpdate = <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">  wrappedUpdate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="set-watcher"><a href="#set-watcher" class="headerlink" title="set watcher"></a>set watcher</h2><h3 id="EXERCISE-Observer"><a href="#EXERCISE-Observer" class="headerlink" title="EXERCISE Observer"></a>EXERCISE Observer</h3><p>Combine the previous two functions, renaming convert() to observe() and keeping autorun():</p>
+<ul>
+<li><p>observe(): converts the properties in the received object and make them reactive.For each converted peroperty, it gets assigned a Dep instance which keeps tracks of a list of subscribing update function, and triggers them to re-run when its setter is invoked.</p>
+</li>
+<li><p>autorun(): takes an update function and re-runs it when properties that the update function subcribes to have been mutated. An update function is said to be “subscribe” to a property if it relies on that property during its evalution.</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observe</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">autorun</span> (<span class="params">update</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/19/vue-learn-render/" rel="prev" title="【vue学习三】vue渲染原理">
+                  <i class="fa fa-chevron-left"></i> 【vue学习三】vue渲染原理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/19/vue-learn-plugin/" rel="next" title="【vue学习六】vue插件">
+                  【vue学习六】vue插件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yaroku</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

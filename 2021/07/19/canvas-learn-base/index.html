@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ysatiche.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="canvas基础 初始化画布在html中声明画布，本例中画布的长为 1366px 宽为 768px (可根据需求自定义) 1&lt;canvas id&#x3D;&quot;canvas&quot; style&#x3D;&quot;width: 1366px; height: 768px;&quot;&gt;&lt;&#x2F;canvas&gt;  在 js 中初始化画布 12let canv &#x3D; document.get">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【canvas自学教程一】canvas基础">
+<meta property="og:url" content="https://ysatiche.github.io/2021/07/19/canvas-learn-base/index.html">
+<meta property="og:site_name" content="Yaroku&#39;s Blog Page">
+<meta property="og:description" content="canvas基础 初始化画布在html中声明画布，本例中画布的长为 1366px 宽为 768px (可根据需求自定义) 1&lt;canvas id&#x3D;&quot;canvas&quot; style&#x3D;&quot;width: 1366px; height: 768px;&quot;&gt;&lt;&#x2F;canvas&gt;  在 js 中初始化画布 12let canv &#x3D; document.get">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-07-19T14:07:44.000Z">
+<meta property="article:modified_time" content="2021-07-19T14:09:17.503Z">
+<meta property="article:author" content="Yaroku">
+<meta property="article:tag" content="canvas">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ysatiche.github.io/2021/07/19/canvas-learn-base/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://ysatiche.github.io/2021/07/19/canvas-learn-base/","path":"2021/07/19/canvas-learn-base/","title":"【canvas自学教程一】canvas基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【canvas自学教程一】canvas基础 | Yaroku's Blog Page</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Yaroku's Blog Page</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog for happy Code & Life!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#canvas%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">canvas基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E7%94%BB%E5%B8%83"><span class="nav-number">1.1.</span> <span class="nav-text">初始化画布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%88%B6%E8%B7%AF%E5%BE%84"><span class="nav-number">1.2.</span> <span class="nav-text">绘制路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B7%E5%BC%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">样式设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#save-%E4%B8%8E-restore"><span class="nav-number">1.4.</span> <span class="nav-text">save() 与 restore()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E5%B1%82%E7%94%BB%E5%B8%83"><span class="nav-number">1.5.</span> <span class="nav-text">两层画布</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yaroku"
+      src="/images/me.JPG">
+  <p class="site-author-name" itemprop="name">Yaroku</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://ysatiche.github.io/2021/07/19/canvas-learn-base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.JPG">
+      <meta itemprop="name" content="Yaroku">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yaroku's Blog Page">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【canvas自学教程一】canvas基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-07-19 22:07:44 / Modified: 22:09:17" itemprop="dateCreated datePublished" datetime="2021-07-19T22:07:44+08:00">2021-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/fontend/" itemprop="url" rel="index"><span itemprop="name">fontend</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="canvas基础"><a href="#canvas基础" class="headerlink" title="canvas基础"></a>canvas基础</h1><hr>
+<h2 id="初始化画布"><a href="#初始化画布" class="headerlink" title="初始化画布"></a>初始化画布</h2><p>在html中声明画布，本例中画布的长为 1366px 宽为 768px (可根据需求自定义)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=&quot;canvas&quot; style=&quot;width: 1366px; height: 768px;&quot;&gt;&lt;/canvas&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在 js 中初始化画布</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let canv = document.getElementById(&#x27;canvas&#x27;) // 获取canvas dom对象</span><br><span class="line">let ctx = canv.getContext(&#x27;2d&#x27;) // 得到 canvas CanvasRenderingContext2D对象，对画布的操作基本都是基于ctx来的</span><br></pre></td></tr></table></figure>
+
+<h2 id="绘制路径"><a href="#绘制路径" class="headerlink" title="绘制路径"></a>绘制路径</h2><blockquote>
+<p>图形的基本元素是路径，路径是通过不同颜色和宽度的线段或曲线相连形成的不同形状的点的集合。</p>
+</blockquote>
+<p><font color=#D4B51B>路径的绘制步骤？</font><br></p>
+<ol>
+<li>首先，你需要创建路径起始点(beginPath(), moveTo())</li>
+<li>然后你使用画图命令去画出路径(lineTo(), arcTo()等)</li>
+<li>把路径封闭(不是必须的)(closePath())</li>
+<li>一旦路径生成，你就能通过描边或填充路径区域来渲染图形(fill, stroke)</li>
+</ol>
+<p>我们来一一说下这几个绘图常用的api</p>
+<p><code>beginPath()</code> 新建一条路径</p>
+<p><code>moveTo(x, y)</code> 在当前路径下新建一条子路径，并将笔触移动到指定的坐标x以及y上</p>
+<p><code>lineTo(x, y)</code> 绘制一条从当前位置到指定x以及y位置的直线</p>
+<p><code>arc(x, y, radius, startAngle, endAngle, anticlockwise)</code> 画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成</p>
+<p><code>quadraticCurveTo(cp1x, cp1y, x, y)</code> 绘制二次贝塞尔曲线，cp1x,cp1y为一个控制点，x,y为结束点</p>
+<p><code>bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)</code> 绘制三次贝塞尔曲线，cp1x,cp1y为控制点一，cp2x,cp2y为控制点二，x,y为结束点</p>
+<p><code>stroke()</code> 通过线条来绘制图形轮廓</p>
+<p><code>fill()</code> 通过填充路径的内容区域生成实心的图形</p>
+<p>比如我们要绘制一个实心三角形，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function draw() &#123;</span><br><span class="line">  var canvas = document.getElementById(&#x27;canvas&#x27;);</span><br><span class="line">  if (canvas.getContext) &#123;</span><br><span class="line">    var ctx = canvas.getContext(&#x27;2d&#x27;);</span><br><span class="line">    ctx.beginPath();</span><br><span class="line">    ctx.moveTo(75, 50);</span><br><span class="line">    ctx.lineTo(100, 75);</span><br><span class="line">    ctx.lineTo(100, 25);</span><br><span class="line">    ctx.fill(); // 填充图形区域</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Path2D 对象 – Path2D()会返回一个新初始化的Path2D对象（可能将某一个路径作为变量——创建一个它的副本，或者将一个包含SVG path数据的字符串作为变量）</p>
+</blockquote>
+<h2 id="样式设置"><a href="#样式设置" class="headerlink" title="样式设置"></a>样式设置</h2><blockquote>
+<p>色彩 如果我们想要给图形上色，有两个重要的属性可以做到：fillStyle 和 strokeStyle</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctx.fillStyle = &quot;rgb(255,165,0)&quot;; // 填充颜色值</span><br><span class="line">ctx.strokeStyle = &quot;rgba(255,165,0,1)&quot;; // 边框颜色值</span><br></pre></td></tr></table></figure>
+
+<p>我们用下面的方法新建一个 canvasGradient 对象，并且赋给图形的 fillStyle 或 strokeStyle 属性，实现线性或者径向的渐变</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var lingrad2 = ctx.createLinearGradient(0,50,0,95);</span><br><span class="line">lingrad2.addColorStop(0.5, &#x27;#000&#x27;);</span><br><span class="line">lingrad2.addColorStop(1, &#x27;rgba(0,0,0,0)&#x27;);</span><br><span class="line">ctx.strokeStyle = lingrad2;</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用图案的应用跟渐变很类似的，创建出一个 pattern 之后，赋给 fillStyle 或 strokeStyle 属性即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var img = new Image();</span><br><span class="line">img.src = &#x27;someimage.png&#x27;;</span><br><span class="line">var ptrn = ctx.createPattern(img,&#x27;repeat&#x27;);</span><br><span class="line">ctx.fillStyle = ptrn;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>线条样式 通过lineTo() arc()等绘制路径的api所绘制的线条都受它的影响</p>
+</blockquote>
+<p><code>lineWidth = value</code>  线条的宽度</p>
+<p><code>lineCap = type type=[butt, round, square]</code> 线条尾端的样式</p>
+<p><code>lineJoin = type type=[round, bevel, miter]</code> 设定线条与线条间接合处的样式</p>
+<p><code>setLineDash(segments)</code> 设置当前虚线样式</p>
+<h2 id="save-与-restore"><a href="#save-与-restore" class="headerlink" title="save() 与 restore()"></a>save() 与 restore()</h2><h2 id="两层画布"><a href="#两层画布" class="headerlink" title="两层画布"></a>两层画布</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/canvas/" rel="tag"># canvas</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/19/canvas-learn-choose/" rel="prev" title="【canvas自学教程四】canvas实现圈选点选">
+                  <i class="fa fa-chevron-left"></i> 【canvas自学教程四】canvas实现圈选点选
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yaroku</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

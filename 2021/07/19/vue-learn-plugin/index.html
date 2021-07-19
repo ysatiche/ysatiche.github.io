@@ -20,34 +20,28 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ysatiche.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="项目使用 electron+react+phaser+webpack 技术来实现在培优双师课堂下所有互动游戏的核心库，包含20+个数学语文英文的上课小游戏。  在此基础上，集团中台与之共建内部的未来课件项目，帮助老师一键化配置上课游戏，如今已经实现了教学游戏的流程化开发，一键化配置，日志链路智能化追踪等功能。  项目结构   部分互动展示">
+<meta name="description" content="Pluginwrite plugins in vue2there are two common methods to write plugins in vue2. 123function (Vue, options) &amp;#123;  &#x2F;&#x2F; plugin code&amp;#125;  and use Vue.mixins 1Vue.mixin(options)  write a simple valida">
 <meta property="og:type" content="article">
-<meta property="og:title" content="教学互动">
-<meta property="og:url" content="https://ysatiche.github.io/2021/07/19/interaction/index.html">
+<meta property="og:title" content="【vue学习六】vue插件">
+<meta property="og:url" content="https://ysatiche.github.io/2021/07/19/vue-learn-plugin/index.html">
 <meta property="og:site_name" content="Yaroku&#39;s Blog Page">
-<meta property="og:description" content="项目使用 electron+react+phaser+webpack 技术来实现在培优双师课堂下所有互动游戏的核心库，包含20+个数学语文英文的上课小游戏。  在此基础上，集团中台与之共建内部的未来课件项目，帮助老师一键化配置上课游戏，如今已经实现了教学游戏的流程化开发，一键化配置，日志链路智能化追踪等功能。  项目结构   部分互动展示">
+<meta property="og:description" content="Pluginwrite plugins in vue2there are two common methods to write plugins in vue2. 123function (Vue, options) &amp;#123;  &#x2F;&#x2F; plugin code&amp;#125;  and use Vue.mixins 1Vue.mixin(options)  write a simple valida">
 <meta property="og:locale">
-<meta property="og:image" content="https://raw.githubusercontent.com/ysatiche/imageHome/main/interaction_component.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/ysatiche/imageHome/main/interaction_termmap.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/ysatiche/imageHome/main/interaction_pk.png">
-<meta property="article:published_time" content="2021-07-19T13:34:12.000Z">
-<meta property="article:modified_time" content="2021-07-19T13:39:33.980Z">
+<meta property="article:published_time" content="2021-07-19T14:07:44.000Z">
+<meta property="article:modified_time" content="2021-07-19T14:22:17.047Z">
 <meta property="article:author" content="Yaroku">
-<meta property="article:tag" content="electron">
-<meta property="article:tag" content="phaser">
-<meta property="article:tag" content="react">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/ysatiche/imageHome/main/interaction_component.png">
 
 
-<link rel="canonical" href="https://ysatiche.github.io/2021/07/19/interaction/">
+<link rel="canonical" href="https://ysatiche.github.io/2021/07/19/vue-learn-plugin/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://ysatiche.github.io/2021/07/19/interaction/","path":"2021/07/19/interaction/","title":"教学互动"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-Hans","comments":true,"permalink":"https://ysatiche.github.io/2021/07/19/vue-learn-plugin/","path":"2021/07/19/vue-learn-plugin/","title":"【vue学习六】vue插件"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>教学互动 | Yaroku's Blog Page</title>
+<title>【vue学习六】vue插件 | Yaroku's Blog Page</title>
   
 
 
@@ -115,7 +109,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">项目使用 electron+react+phaser+webpack 技术来实现在培优双师课堂下所有互动游戏的核心库，包含20+个数学语文英文的上课小游戏。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">在此基础上，集团中台与之共建内部的未来课件项目，帮助老师一键化配置上课游戏，如今已经实现了教学游戏的流程化开发，一键化配置，日志链路智能化追踪等功能。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.3.</span> <span class="nav-text">部分互动展示</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Plugin"><span class="nav-number">1.</span> <span class="nav-text">Plugin</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#write-plugins-in-vue2"><span class="nav-number">1.1.</span> <span class="nav-text">write plugins in vue2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#write-a-simple-validation-plugin"><span class="nav-number">1.2.</span> <span class="nav-text">write a simple validation plugin</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -180,7 +174,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://ysatiche.github.io/2021/07/19/interaction/">
+    <link itemprop="mainEntityOfPage" href="https://ysatiche.github.io/2021/07/19/vue-learn-plugin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/me.JPG">
@@ -193,7 +187,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          教学互动
+          【vue学习六】vue插件
         </h1>
 
         <div class="post-meta-container">
@@ -205,7 +199,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-07-19 21:34:12 / Modified: 21:39:33" itemprop="dateCreated datePublished" datetime="2021-07-19T21:34:12+08:00">2021-07-19</time>
+      <time title="Created: 2021-07-19 22:07:44 / Modified: 22:22:17" itemprop="dateCreated datePublished" datetime="2021-07-19T22:07:44+08:00">2021-07-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -227,18 +221,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3>项目使用 electron+react+phaser+webpack 技术来实现在培优双师课堂下所有互动游戏的核心库，包含20+个数学语文英文的上课小游戏。</h3>
+        <h1 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h1><h2 id="write-plugins-in-vue2"><a href="#write-plugins-in-vue2" class="headerlink" title="write plugins in vue2"></a>write plugins in vue2</h2><p>there are two common methods to write plugins in vue2.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">Vue, options</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// plugin code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4>在此基础上，集团中台与之共建内部的未来课件项目，帮助老师一键化配置上课游戏，如今已经实现了教学游戏的流程化开发，一键化配置，日志链路智能化追踪等功能。</h4>
+<p>and use Vue.mixins</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.mixin(options)</span><br></pre></td></tr></table></figure>
 
-<h4><center>项目结构</center></h4>
+<h2 id="write-a-simple-validation-plugin"><a href="#write-a-simple-validation-plugin" class="headerlink" title="write a simple validation plugin"></a>write a simple validation plugin</h2><p>create a plugin that teaches Vue components to handle a custom “rules” option. The rules option expects an object that specifies validation rules for data in the component.</p>
+<p>Expected usage:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="attr">data</span>: &#123; <span class="attr">foo</span>: <span class="number">10</span> &#125;,</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">    <span class="attr">foo</span>: &#123;</span><br><span class="line">      <span class="attr">validate</span>: <span class="function"><span class="params">value</span> =&gt;</span> value &gt; <span class="number">1</span>,</span><br><span class="line">      <span class="attr">message</span>: <span class="string">&#x27;foo must be greater than one&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/ysatiche/imageHome/main/interaction_component.png"></p>
-<h4><center>部分互动展示</center></h4>
-
-<p><img src="https://raw.githubusercontent.com/ysatiche/imageHome/main/interaction_termmap.png"></p>
-<p><img src="https://raw.githubusercontent.com/ysatiche/imageHome/main/interaction_pk.png"></p>
-
+<p>Solution</p>
+<p>In vue2, you can use <code>this.$options.rule</code> to get <code>rule</code> defined in Vue.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> RulesPlugin = &#123;</span><br><span class="line">  install (Vue) &#123;</span><br><span class="line">    Vue.mixin(&#123;</span><br><span class="line">      created () &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.$options.rules) &#123;</span><br><span class="line">          <span class="built_in">Object</span>.keys(<span class="built_in">this</span>.$options.rules).forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> rule = <span class="built_in">this</span>.$options.rules[key]</span><br><span class="line">            <span class="built_in">this</span>.$watch(key, <span class="function"><span class="params">newValue</span> =&gt;</span> &#123;</span><br><span class="line">              <span class="keyword">const</span> result = rule.validate(newValue)</span><br><span class="line">              <span class="keyword">if</span> (!result) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(rule.message)</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Vue.use(RulesPlugin)</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -247,22 +242,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/electron/" rel="tag"># electron</a>
-              <a href="/tags/phaser/" rel="tag"># phaser</a>
-              <a href="/tags/react/" rel="tag"># react</a>
+              <a href="/tags/vue/" rel="tag"># vue</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/07/19/blackboard/" rel="prev" title="未来黑板简介">
-                  <i class="fa fa-chevron-left"></i> 未来黑板简介
+                <a href="/2021/07/19/vue-learn-reactivity/" rel="prev" title="【vue学习二】vue响应式原理">
+                  <i class="fa fa-chevron-left"></i> 【vue学习二】vue响应式原理
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/07/19/vue-learn-vuex/" rel="next" title="【vue学习五】vuex">
-                  【vue学习五】vuex <i class="fa fa-chevron-right"></i>
+                <a href="/2021/07/19/vue-learn-basic/" rel="next" title="【vue学习一】vue基础">
+                  【vue学习一】vue基础 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
